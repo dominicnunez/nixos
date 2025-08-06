@@ -133,17 +133,6 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Firewall settings in security module
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  #networking.firewall.enable = false;
     # Enable flakes and new nix command
   nix = {
     settings = {

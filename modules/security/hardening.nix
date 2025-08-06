@@ -120,8 +120,6 @@
     
     # Password management
     pass
-    bitwarden-cli
-    keepassxc
     
     # System monitoring
     audit
