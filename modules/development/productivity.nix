@@ -79,7 +79,6 @@
     xclip              # X11 clipboard utilities
     
     # Application launchers
-    ulauncher          # Fast app launcher (like macOS Spotlight)
     rofi               # Window switcher and launcher
     
     # File managers
@@ -92,7 +91,7 @@
     
     # Task management
     taskwarrior3       # Command-line task management (v3)
-    # taskwarrior-tui    # TUI for taskwarrior (may need update for v3)
+    taskwarrior-tui    # TUI for taskwarrior
     
     # Process management
     procs              # Modern ps replacement
@@ -110,17 +109,6 @@
     entr               # Run commands when files change
   ];
   
-  # Note: Git delta and advanced configuration would require home-manager
-  # Users can configure git in their ~/.gitconfig
-  # Delta can be configured with:
-  # [core]
-  #     pager = delta
-  # [delta]
-  #     navigate = true
-  #     light = false
-  #     line-numbers = true
-  #     side-by-side = true
-  #     theme = "Dracula"
   
   # Shell integrations
   programs.bash.interactiveShellInit = ''

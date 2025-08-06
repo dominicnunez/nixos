@@ -77,6 +77,7 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "colemak";
+    options = "caps:backspace";
   };
 
   # Enable CUPS to print documents.
@@ -90,12 +91,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -108,7 +103,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
     ];
   };
   
@@ -124,16 +118,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
-  # Allow specific insecure packages (needed by some applications)
-  nixpkgs.config.permittedInsecurePackages = [
-    "libsoup-2.74.3"
-  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget  
 ];
 
@@ -148,13 +136,14 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
+  # Firewall settings in security module
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  #networking.firewall.enable = false;
     # Enable flakes and new nix command
   nix = {
     settings = {

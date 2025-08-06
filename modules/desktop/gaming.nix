@@ -18,9 +18,9 @@
     protontricks       # Tool for Proton/Wine games
     
     # Game launchers
-    # lutris             # Universal game launcher (disabled: may require insecure libsoup)
-    # heroic             # Epic Games & GOG launcher (disabled: may require insecure libsoup)
-    # bottles            # Wine prefix manager (disabled: may require insecure libsoup)
+    lutris             # Universal game launcher
+    heroic             # Epic Games & GOG launcher
+    bottles            # Wine prefix manager
     
     # Wine for Windows games
     wineWowPackages.stable
@@ -34,13 +34,6 @@
     # Controllers
     jstest-gtk         # Joystick testing
     antimicrox         # Map controller to keyboard
-    
-    # Discord (already added but gaming-related)
-    discord
-    # discord-ptb       # (disabled: may require insecure libsoup)
-    
-    # Minecraft
-    prismlauncher      # Minecraft launcher
     
     # Emulators (optional)
     retroarch          # Multi-system emulator
