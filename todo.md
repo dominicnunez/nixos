@@ -71,12 +71,12 @@ This document tracks the incremental migration of NixOS system configurations to
 - [x] Test browser profiles
 
 ### 3.3 Media and Productivity Apps
-- [ ] Spotify configuration
-- [ ] VLC settings
-- [ ] Obsidian vault settings
-- [ ] LibreOffice preferences
-- [ ] Discord settings
-- [ ] Thunderbird mail config
+- [x] Spotify configuration
+- [x] VLC settings
+- [x] Obsidian vault settings
+- [x] LibreOffice preferences
+- [x] Discord settings
+- [x] Thunderbird mail config
 
 ## Phase 4: Desktop Environments
 ### 4.1 DE Module Structure
