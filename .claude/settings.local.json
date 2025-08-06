@@ -12,7 +12,9 @@
       "Bash(git remote remove:*)",
       "Bash(ls:*)",
       "Bash(sudo chown:*)",
-      "Bash(sudo chmod:*)"
+      "Bash(sudo chmod:*)",
+      "Bash(cp:*)",
+      "Bash(sudo nixos-rebuild:*)"
     ],
     "deny": []
   }

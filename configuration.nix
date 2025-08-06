@@ -18,6 +18,7 @@
       # Desktop modules
       ./modules/desktop/browsers.nix
       ./modules/desktop/applications.nix
+      ./modules/desktop/fonts-themes.nix
       
       # Services
       ./modules/services/docker.nix
