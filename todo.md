@@ -64,11 +64,11 @@ This document tracks the incremental migration of NixOS system configurations to
 - [x] Test application launches
 
 ### 3.2 Browser Configuration
-- [ ] Create `modules/home-manager/browsers.nix`
-- [ ] Firefox profiles and preferences
-- [ ] Chrome/Chromium settings
-- [ ] Brave configuration
-- [ ] Test browser profiles
+- [x] Create `modules/home-manager/browsers.nix`
+- [x] Firefox profiles and preferences
+- [x] Chrome/Chromium settings
+- [x] Brave configuration
+- [x] Test browser profiles
 
 ### 3.3 Media and Productivity Apps
 - [ ] Spotify configuration

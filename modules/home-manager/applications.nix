@@ -5,10 +5,7 @@
   # Desktop applications for the user
   home.packages = with pkgs; [
     # ===== Browsers =====
-    # Firefox is managed at system level with programs.firefox.enable
-    brave
-    google-chrome
-    chromium
+    # Browsers are configured in browsers.nix
     
     # ===== Communication =====
     discord
@@ -203,37 +200,7 @@
     };
   };
   
-  # Firefox (user-specific settings)
-  # Note: Firefox is installed system-wide, but we can configure user settings
-  programs.firefox = {
-    enable = false;  # Already enabled at system level
-    
-    # User profiles and settings would go here if we were managing Firefox via Home Manager
-    # profiles = {
-    #   default = {
-    #     settings = {
-    #       "browser.startup.homepage" = "https://start.duckduckgo.com";
-    #       "privacy.trackingprotection.enabled" = true;
-    #     };
-    #   };
-    # };
-  };
-  
-  # Chromium configuration
-  programs.chromium = {
-    enable = true;
-    package = pkgs.chromium;
-    extensions = [
-      # uBlock Origin
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
-      # Bitwarden
-      { id = "nngceckbapebfimnlniiiahkandclblb"; }
-      # Dark Reader
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; }
-      # Vimium
-      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
-    ];
-  };
+  # Browser configurations moved to browsers.nix
   
   # Discord configuration (via Home Manager when available)
   # Currently just installed as a package
@@ -249,15 +216,7 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "text/html" = ["firefox.desktop"];
-        "text/xml" = ["firefox.desktop"];
-        "application/pdf" = ["firefox.desktop"];
-        "application/x-extension-htm" = ["firefox.desktop"];
-        "application/x-extension-html" = ["firefox.desktop"];
-        "application/x-extension-shtml" = ["firefox.desktop"];
-        "application/x-extension-xhtml" = ["firefox.desktop"];
-        "application/x-extension-xht" = ["firefox.desktop"];
-        "application/xhtml+xml" = ["firefox.desktop"];
+        # Browser associations moved to browsers.nix
         
         "image/jpeg" = ["org.kde.gwenview.desktop"];
         "image/png" = ["org.kde.gwenview.desktop"];
@@ -277,8 +236,6 @@
         
         "inode/directory" = ["org.kde.dolphin.desktop"];
         
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
         "x-scheme-handler/discord" = ["discord.desktop"];
         "x-scheme-handler/spotify" = ["spotify.desktop"];
       };
