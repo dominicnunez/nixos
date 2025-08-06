@@ -34,7 +34,7 @@ in
   services.xserver.displayManager.lightdm.enable = desktopConfig.useLightdm;
   
   # Desktop Environments
-  services.desktopManager.plasma6.enable = desktopConfig.plasma;
+  services.desktopManager.plasma6.enable = desktopConfig.plasma;  # NixOS 25.05 uses Plasma 6
   services.xserver.desktopManager.gnome.enable = desktopConfig.gnome;
   services.xserver.desktopManager.xfce.enable = desktopConfig.xfce;
   services.xserver.desktopManager.cinnamon.enable = desktopConfig.cinnamon;

@@ -8,7 +8,7 @@
     
     packages = with pkgs; [
       # Nerd Fonts (with icons/glyphs for terminals)
-      # Using simpler syntax for now - can expand later
+      # In NixOS 25.05, use the new nerd-fonts syntax
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
       nerd-fonts.hack

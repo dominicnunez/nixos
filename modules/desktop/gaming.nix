@@ -46,7 +46,7 @@
 
   # Hardware support for gaming
   hardware = {
-    # OpenGL support (already configured but ensuring 32-bit for games)
+    # Graphics support (already configured but ensuring 32-bit for games)
     graphics = {
       enable = true;
       enable32Bit = true;
