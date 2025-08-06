@@ -22,6 +22,7 @@
       
       # Services
       ./modules/services/docker.nix
+      ./modules/services/ssh.nix
     ];
 
   # Bootloader.

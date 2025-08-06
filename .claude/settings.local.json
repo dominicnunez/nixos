@@ -14,7 +14,8 @@
       "Bash(sudo chown:*)",
       "Bash(sudo chmod:*)",
       "Bash(cp:*)",
-      "Bash(sudo nixos-rebuild:*)"
+      "Bash(sudo nixos-rebuild:*)",
+      "Bash(sudo mv:*)"
     ],
     "deny": []
   }
