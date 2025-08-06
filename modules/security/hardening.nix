@@ -58,16 +58,8 @@
     bantime = "1h";
     bantime-increment.enable = true;
     
-    jails = {
-      ssh = {
-        enabled = true;
-        port = 2222;
-        filter = "sshd";
-        maxretry = 3;
-        findtime = 600;
-        bantime = 3600;
-      };
-    };
+    # SSH jail is automatically configured by openssh service
+    # when fail2ban is enabled
   };
   
   # Kernel hardening

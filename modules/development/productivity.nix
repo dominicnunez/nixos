@@ -110,51 +110,17 @@
     entr               # Run commands when files change
   ];
   
-  # Configure Git to use delta for diffs
-  programs.git = {
-    enable = true;
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        light = false;
-        line-numbers = true;
-        side-by-side = true;
-        theme = "Dracula";
-      };
-    };
-    
-    extraConfig = {
-      # Use lazygit as merge tool
-      merge.tool = "lazygit";
-      
-      # Better diff algorithm
-      diff.algorithm = "histogram";
-      
-      # Reuse recorded resolution of conflicted merges
-      rerere.enabled = true;
-      
-      # More helpful commands
-      alias = {
-        # Shortcuts
-        st = "status";
-        co = "checkout";
-        br = "branch";
-        ci = "commit";
-        unstage = "reset HEAD --";
-        last = "log -1 HEAD";
-        
-        # Useful commands
-        visual = "!gitui";
-        lazy = "!lazygit";
-        undo = "reset --soft HEAD~1";
-        amend = "commit --amend --no-edit";
-        
-        # Pretty log
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-      };
-    };
-  };
+  # Note: Git delta and advanced configuration would require home-manager
+  # Users can configure git in their ~/.gitconfig
+  # Delta can be configured with:
+  # [core]
+  #     pager = delta
+  # [delta]
+  #     navigate = true
+  #     light = false
+  #     line-numbers = true
+  #     side-by-side = true
+  #     theme = "Dracula"
   
   # Shell integrations
   programs.bash.interactiveShellInit = ''
