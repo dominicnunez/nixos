@@ -7,7 +7,12 @@
       "Bash(git push:*)",
       "Bash(git pull:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git remote remove:*)",
+      "Bash(ls:*)",
+      "Bash(sudo chown:*)",
+      "Bash(sudo chmod:*)"
     ],
     "deny": []
   }
