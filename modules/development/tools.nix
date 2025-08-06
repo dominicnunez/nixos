@@ -25,6 +25,7 @@
     btop               # Better htop
     iotop
     lsof
+    neofetch           # System information display
     
     # Network tools
     curl

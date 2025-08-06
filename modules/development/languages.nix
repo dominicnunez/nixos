@@ -4,11 +4,10 @@
 {
   environment.systemPackages = with pkgs; [
     # Node.js and JavaScript/TypeScript
-    nodejs_22       # Latest LTS version
-    nodePackages.npm
-    nodePackages.pnpm
-    nodePackages.typescript
-    nodePackages.typescript-language-server
+    # Node.js is managed through fnm (Fast Node Manager)
+    # nodePackages.pnpm  # Can be installed via npm/fnm
+    # nodePackages.typescript  # Can be installed via npm/fnm
+    # nodePackages.typescript-language-server  # Can be installed via npm/fnm
     
     # Node version management
     fnm             # Fast Node Manager (better than nvm)
