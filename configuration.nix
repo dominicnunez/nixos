@@ -15,15 +15,22 @@
       ./modules/development/languages.nix
       ./modules/development/direnv.nix
       ./modules/development/databases.nix
+      ./modules/development/neovim.nix
+      ./modules/development/productivity.nix
       
       # Desktop modules
       ./modules/desktop/browsers.nix
       ./modules/desktop/applications.nix
       ./modules/desktop/fonts-themes.nix
+      ./modules/desktop/gaming.nix
       
       # Services
       ./modules/services/docker.nix
       ./modules/services/ssh.nix
+      ./modules/services/vpn.nix
+      
+      # Security
+      ./modules/security/hardening.nix
     ];
 
   # Bootloader.
