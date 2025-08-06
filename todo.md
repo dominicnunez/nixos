@@ -38,16 +38,16 @@ This document tracks the incremental migration of NixOS system configurations to
 
 ## Phase 2: Development Tools
 ### 2.1 Development Module Structure
-- [ ] Create `modules/home-manager/development.nix`
-- [ ] Structure for language-specific tools
-- [ ] Git configuration (enhance existing)
-- [ ] Test development workflow
+- [x] Create `modules/home-manager/development.nix`
+- [x] Structure for language-specific tools
+- [x] Git configuration (enhance existing)
+- [x] Test development workflow
 
 ### 2.2 Productivity Tools
-- [ ] Migrate lazygit configuration
-- [ ] Migrate gitui settings
-- [ ] Configure delta for git diffs
-- [ ] Move git-extras and hub configs
+- [x] Migrate lazygit configuration
+- [x] Migrate gitui settings
+- [x] Configure delta for git diffs
+- [x] Move git-extras and hub configs
 
 ### 2.3 Language-Specific Tools
 - [ ] Python development tools

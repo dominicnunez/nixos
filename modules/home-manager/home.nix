@@ -8,6 +8,7 @@
     ./terminal.nix
     ./ssh.nix
     ./tmux.nix
+    ./development.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -33,37 +34,7 @@
     EDITOR = "nvim";
   };
 
-  # Git configuration (migrated from system-wide)
-  programs.git = {
-    enable = true;
-    userName = "Aural"; # Update with your actual name
-    userEmail = "your-email@example.com"; # Update with your actual email
-    
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      push.autoSetupRemote = true;
-      core.editor = "nvim";
-      
-      # Additional useful git settings
-      merge.conflictstyle = "diff3";
-      diff.colorMoved = "default";
-      fetch.prune = true;
-    };
-    
-    # Git aliases
-    aliases = {
-      st = "status";
-      co = "checkout";
-      br = "branch";
-      ci = "commit";
-      unstage = "reset HEAD --";
-      last = "log -1 HEAD";
-      lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-    };
-  };
-
-  # Bash configuration moved to terminal.nix
+  # Git configuration moved to development.nix
 
   # FZF configuration
   programs.fzf = {
