@@ -11,9 +11,8 @@
     networkmanager-l2tp      # L2TP/IPSec support
     
     # GUI VPN Clients
-    gnome.networkmanager-openvpn  # GNOME integration
-    protonvpn-gui            # ProtonVPN client
-    mullvad-vpn              # Mullvad VPN client
+    # protonvpn-gui            # ProtonVPN client (disabled: requires insecure libsoup)
+    # mullvad-vpn              # Mullvad VPN client (disabled: requires insecure libsoup)
     
     # VPN related tools
     openconnect              # Cisco AnyConnect compatible

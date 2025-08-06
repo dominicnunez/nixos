@@ -91,8 +91,8 @@
     byobu              # Enhanced tmux/screen
     
     # Task management
-    taskwarrior        # Command-line task management
-    taskwarrior-tui    # TUI for taskwarrior
+    taskwarrior3       # Command-line task management (v3)
+    # taskwarrior-tui    # TUI for taskwarrior (may need update for v3)
     
     # Process management
     procs              # Modern ps replacement

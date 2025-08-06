@@ -18,9 +18,9 @@
     protontricks       # Tool for Proton/Wine games
     
     # Game launchers
-    lutris             # Universal game launcher
-    heroic             # Epic Games & GOG launcher
-    bottles            # Wine prefix manager
+    # lutris             # Universal game launcher (disabled: may require insecure libsoup)
+    # heroic             # Epic Games & GOG launcher (disabled: may require insecure libsoup)
+    # bottles            # Wine prefix manager (disabled: may require insecure libsoup)
     
     # Wine for Windows games
     wineWowPackages.stable
@@ -37,7 +37,7 @@
     
     # Discord (already added but gaming-related)
     discord
-    discord-ptb
+    # discord-ptb       # (disabled: may require insecure libsoup)
     
     # Minecraft
     prismlauncher      # Minecraft launcher
@@ -102,7 +102,7 @@
   };
 
   # Add user to required groups
-  users.users.developer = {
+  users.users.aural = {
     extraGroups = [ 
       "gamemode"  # For GameMode
       "video"     # For GPU access
@@ -131,7 +131,7 @@
 
   # Enable 32-bit support for games
   nixpkgs.config.allowUnfree = true;
-  hardware.pulseaudio.support32Bit = true;
+  services.pulseaudio.support32Bit = true;
   
   # Fonts for games (some games need Windows fonts)
   fonts.packages = with pkgs; [

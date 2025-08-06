@@ -67,16 +67,14 @@
   environment.systemPackages = with pkgs; [
     postgresql_16
     pgcli           # Better PostgreSQL CLI
-    pgadmin4        # PostgreSQL GUI administration tool
-    dbeaver-bin     # Universal database tool
+    # pgadmin4        # PostgreSQL GUI administration tool (disabled: requires insecure libsoup)
+    # dbeaver-bin     # Universal database tool (disabled: may require insecure libsoup)
     redis
-    redis-insight   # Redis GUI client
     mongodb-tools
     sqlite
     
     # Database migration tools
     flyway
-    sqitch
   ];
   
   # Automatic PostgreSQL backup

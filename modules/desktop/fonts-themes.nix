@@ -46,7 +46,7 @@
       defaultFonts = {
         serif = [ "Noto Serif" "Liberation Serif" ];
         sansSerif = [ "Inter" "Noto Sans" "Liberation Sans" ];
-        monospace = [ "JetBrainsMono Nerd Font" "FiraCode Nerd Font" ];
+        monospace = [ "JetBrains Mono" "Fira Code" ];
         emoji = [ "Noto Color Emoji" ];
       };
       

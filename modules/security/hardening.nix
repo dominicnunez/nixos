@@ -124,7 +124,7 @@
     keepassxc
     
     # System monitoring
-    auditd
+    audit
     sysstat
     iotop
     nethogs
@@ -162,7 +162,7 @@
     
     extraRules = [
       {
-        users = [ "developer" ];
+        users = [ "aural" ];
         commands = [
           {
             command = "/run/current-system/sw/bin/systemctl restart";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -101,7 +101,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.aural = {
     isNormalUser = true;
     description = "Aural";
@@ -111,6 +111,9 @@
     #  thunderbird
     ];
   };
+  
+  # Allow mutable users to set passwords after installation
+  users.mutableUsers = lib.mkForce true;
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
@@ -121,6 +124,11 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+  # Allow specific insecure packages (needed by some applications)
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

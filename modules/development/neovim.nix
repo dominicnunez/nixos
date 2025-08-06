@@ -200,7 +200,8 @@
         EOF
       '';
       
-      packages.all = with pkgs.vimPlugins; [
+      packages.myVimPackages = with pkgs.vimPlugins; {
+        start = [
         # Essential plugins
         nvim-treesitter.withAllGrammars  # Syntax highlighting
         nvim-lspconfig                    # LSP configuration
@@ -244,14 +245,15 @@
         vim-multiple-cursors              # Multiple cursors
         nerdcommenter                     # Better commenting
         vim-gitgutter                     # Git diff in gutter
-      ];
+        ];
+      };
     };
   };
   
   # Additional Neovim tools
   environment.systemPackages = with pkgs; [
     # Language servers (for Neovim LSP)
-    nodePackages.pyright              # Python
+    pyright                           # Python
     nodePackages.typescript-language-server  # TypeScript/JavaScript
     gopls                             # Go
     rust-analyzer                     # Rust
