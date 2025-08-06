@@ -308,50 +308,5 @@
   #   Default=1
   # '';
   
-  # Desktop file associations
-  xdg = {
-    enable = true;
-    
-    # MIME type associations
-    mimeApps = {
-      enable = true;
-      defaultApplications = {
-        # Browser associations moved to browsers.nix
-        
-        "image/jpeg" = ["org.kde.gwenview.desktop"];
-        "image/png" = ["org.kde.gwenview.desktop"];
-        "image/gif" = ["org.kde.gwenview.desktop"];
-        
-        "video/mp4" = ["vlc.desktop"];
-        "video/x-matroska" = ["vlc.desktop"];
-        "video/webm" = ["vlc.desktop"];
-        "audio/mp3" = ["vlc.desktop"];
-        "audio/flac" = ["vlc.desktop"];
-        
-        "text/plain" = ["org.kde.kate.desktop" "code.desktop"];
-        "text/x-python" = ["code.desktop"];
-        "text/x-shellscript" = ["code.desktop"];
-        "application/x-yaml" = ["code.desktop"];
-        "application/json" = ["code.desktop"];
-        
-        "inode/directory" = ["org.kde.dolphin.desktop"];
-        
-        "x-scheme-handler/discord" = ["discord.desktop"];
-        "x-scheme-handler/spotify" = ["spotify.desktop"];
-      };
-    };
-    
-    # Desktop entries
-    desktopEntries = {
-      # Custom desktop entries can be added here
-      # Example:
-      # "my-app" = {
-      #   name = "My Application";
-      #   exec = "my-app %F";
-      #   icon = "my-app";
-      #   comment = "My custom application";
-      #   categories = ["Utility"];
-      # };
-    };
-  };
+  # XDG configuration moved to xdg.nix
 }

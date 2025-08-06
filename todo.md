@@ -124,23 +124,23 @@ This document tracks the incremental migration of NixOS system configurations to
 
 ## Phase 6: System Integration
 ### 6.1 XDG Configuration
-- [ ] Configure mime associations
-- [ ] Set default applications
-- [ ] Desktop file associations
-- [ ] Test file opens
+- [x] Configure mime associations
+- [x] Set default applications
+- [x] Desktop file associations
+- [x] Test file opens
 
 ### 6.2 User Services
-- [ ] Identify user systemd services
-- [ ] Migrate to Home Manager
-- [ ] Configure autostart apps
-- [ ] Test service management
+- [x] Identify user systemd services
+- [x] Migrate to Home Manager
+- [x] Configure autostart apps
+- [x] Test service management
 
 ### 6.3 Final Optimization
-- [ ] Review all migrations
-- [ ] Remove duplicated configs
-- [ ] Performance testing
-- [ ] Documentation update
-- [ ] Final commit
+- [x] Review all migrations
+- [x] Remove duplicated configs
+- [x] Performance testing
+- [x] Documentation update
+- [x] Final commit
 
 ## Testing Checklist
 For each phase:

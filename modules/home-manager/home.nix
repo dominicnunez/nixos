@@ -12,6 +12,8 @@
     ./applications.nix
     ./browsers.nix
     ./gaming.nix
+    ./xdg.nix
+    ./user-services.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

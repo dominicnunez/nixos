@@ -275,10 +275,5 @@
     PROTON_USE_VKD3D = "1";
   };
   
-  # XDG associations for game launchers
-  xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/steam" = ["steam.desktop"];
-    "x-scheme-handler/lutris" = ["lutris.desktop"];
-    "x-scheme-handler/heroic" = ["heroic.desktop"];
-  };
+  # XDG associations moved to xdg.nix
 }

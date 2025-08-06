@@ -418,16 +418,12 @@
     PYTHONDONTWRITEBYTECODE = "1";
     PYTHONUNBUFFERED = "1";
     
-    # Go
-    GOPATH = "$HOME/go";
+    # Go (moved to xdg.nix for XDG compliance)
     GOBIN = "$HOME/go/bin";
     
-    # Rust
-    CARGO_HOME = "$HOME/.cargo";
-    RUSTUP_HOME = "$HOME/.rustup";
+    # Rust (CARGO_HOME and RUSTUP_HOME moved to xdg.nix for XDG compliance)
     
-    # Node.js
-    NPM_CONFIG_PREFIX = "$HOME/.npm-global";
+    # Node.js (NPM_CONFIG_PREFIX moved to xdg.nix for XDG compliance)
     
     # Update PATH for language tools
     PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.local/bin";
