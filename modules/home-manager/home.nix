@@ -5,6 +5,9 @@
   # Import additional modules
   imports = [
     ./neovim.nix
+    ./terminal.nix
+    ./ssh.nix
+    ./tmux.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -60,56 +63,7 @@
     };
   };
 
-  # Bash configuration
-  programs.bash = {
-    enable = true;
-    
-    # Shell aliases (migrated from system-wide)
-    shellAliases = {
-      # Navigation
-      ll = "eza -l";
-      la = "eza -la";
-      lt = "eza --tree";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      
-      # Git shortcuts (complement git aliases)
-      gs = "git status";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
-      
-      # Modern replacements
-      cat = "bat";
-      find = "fd";
-      
-      # Convenience
-      cls = "clear";
-      mkdir = "mkdir -pv";
-      df = "df -h";
-      du = "du -h";
-    };
-    
-    # Bash-specific settings
-    initExtra = ''
-      # Better history
-      export HISTCONTROL=ignoredups:erasedups
-      export HISTSIZE=10000
-      export HISTFILESIZE=10000
-      shopt -s histappend
-      
-      # Enable vi mode (optional, comment out if you prefer emacs mode)
-      set -o vi
-      
-      # Better tab completion
-      bind "set completion-ignore-case on"
-      bind "set show-all-if-ambiguous on"
-      
-      # Colored GCC warnings and errors
-      export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-    '';
-  };
+  # Bash configuration moved to terminal.nix
 
   # FZF configuration
   programs.fzf = {
