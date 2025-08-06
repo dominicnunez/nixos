@@ -109,18 +109,18 @@ This document tracks the incremental migration of NixOS system configurations to
 
 ## Phase 5: Gaming Configuration
 ### 5.1 Gaming Module
-- [ ] Create `modules/home-manager/gaming.nix`
-- [ ] Steam user settings
-- [ ] MangoHud configuration
-- [ ] GameMode settings
-- [ ] Test game launches
+- [x] Create `modules/home-manager/gaming.nix`
+- [x] Steam user settings
+- [x] MangoHud configuration
+- [x] GameMode settings
+- [x] Test game launches
 
 ### 5.2 Game Launchers
-- [ ] Lutris configuration
-- [ ] Heroic launcher settings
-- [ ] Bottles preferences
-- [ ] Controller mappings
-- [ ] Test each launcher
+- [x] Lutris configuration
+- [x] Heroic launcher settings
+- [x] Bottles preferences
+- [x] Controller mappings
+- [x] Test each launcher
 
 ## Phase 6: System Integration
 ### 6.1 XDG Configuration

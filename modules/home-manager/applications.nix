@@ -45,24 +45,8 @@
     # peek  # GIF recorder
     # ksnip  # Alternative screenshot tool
     
-    # ===== Gaming Launchers & Tools =====
-    lutris
-    heroic
-    bottles
-    protontricks
-    
-    # ===== Gaming Utilities =====
-    jstest-gtk  # Joystick testing
-    antimicrox  # Controller mapping
-    goverlay  # MangoHud GUI
-    r2modman  # Unity mod manager
-    
-    # ===== Emulators =====
-    retroarch
-    dolphin-emu
-    # pcsx2  # PlayStation 2 emulator
-    # rpcs3  # PlayStation 3 emulator
-    # yuzu  # Nintendo Switch emulator
+    # ===== Gaming =====
+    # Gaming packages moved to gaming.nix
     
     # ===== File Management =====
     # dolphin  # KDE file manager (if not using KDE)
