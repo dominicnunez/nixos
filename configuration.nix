@@ -14,6 +14,7 @@
       ./modules/development/tools.nix
       ./modules/development/languages.nix
       ./modules/development/direnv.nix
+      ./modules/development/databases.nix
       
       # Desktop modules
       ./modules/desktop/browsers.nix
