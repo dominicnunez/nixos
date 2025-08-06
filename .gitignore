@@ -15,3 +15,4 @@ hardware-configuration.nix
 
 # Ignore lock files from editors
 .#*
+.claude
