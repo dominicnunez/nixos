@@ -14,9 +14,6 @@
     nix-direnv
   ];
   
-  # Shell integration for bash (your default shell)
-  programs.bash.interactiveShellInit = ''
-    # Initialize direnv
-    eval "$(direnv hook bash)"
-  '';
+  # Note: Shell integration for direnv has been moved to Home Manager
+  # See modules/home-manager/home.nix
 }

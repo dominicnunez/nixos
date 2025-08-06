@@ -40,16 +40,6 @@
     PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin";
   };
   
-  # FNM (Fast Node Manager) shell integration
-  programs.bash.interactiveShellInit = ''
-    # Initialize fnm if available
-    if command -v fnm &> /dev/null; then
-      eval "$(fnm env --use-on-cd)"
-    fi
-  '';
-  
-  # Create fnm alias for nvm compatibility
-  environment.shellAliases = {
-    nvm = "fnm";  # Alias for compatibility with projects expecting nvm
-  };
+  # Note: FNM shell integration and nvm alias have been moved to Home Manager
+  # See modules/home-manager/terminal.nix
 }

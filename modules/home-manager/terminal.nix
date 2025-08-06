@@ -16,6 +16,9 @@
       "..." = "cd ../..";
       "....." = "cd ../../../..";
       
+      # Node.js
+      nvm = "fnm";  # Alias for compatibility with projects expecting nvm
+      
       # Git shortcuts
       gs = "git status";
       gc = "git commit";
@@ -81,6 +84,11 @@
       }
       
       PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]$(parse_git_branch)\[\033[00m\]\$ '
+      
+      # FNM (Fast Node Manager) integration
+      if command -v fnm &> /dev/null; then
+        eval "$(fnm env --use-on-cd)"
+      fi
       
       # Productivity tool integrations (from productivity.nix)
       # These are handled by the programs below but kept for reference

@@ -110,54 +110,6 @@
   ];
   
   
-  # Shell integrations
-  programs.bash.interactiveShellInit = ''
-    # Zoxide (smarter cd)
-    eval "$(zoxide init bash)"
-    
-    # Atuin (better history)
-    eval "$(atuin init bash)"
-    
-    # FZF key bindings
-    source ${pkgs.fzf}/share/fzf/key-bindings.bash
-    source ${pkgs.fzf}/share/fzf/completion.bash
-    
-    # Aliases for productivity
-    alias cd='z'  # Use zoxide instead of cd
-    alias cdi='zi'  # Interactive directory jump
-    alias lg='lazygit'
-    alias g='git'
-    alias cat='bat'  # Better cat with syntax highlighting
-    alias ls='eza'   # Better ls
-    alias find='fd'  # Better find
-    alias ps='procs' # Better ps
-    alias top='btop' # Better top
-    alias df='duf'   # Better df
-    alias du='dust'  # Better du
-  '';
-  
-  programs.fish.interactiveShellInit = ''
-    # Zoxide
-    zoxide init fish | source
-    
-    # Atuin
-    atuin init fish | source
-    
-    # FZF
-    fzf --fish | source
-    
-    # Aliases
-    alias cd='z'
-    alias cdi='zi'
-    alias lg='lazygit'
-    alias g='git'
-  '';
-  
-  # FZF configuration
-  environment.variables = {
-    FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border --preview 'bat --color=always {}'";
-    FZF_DEFAULT_COMMAND = "fd --type f --hidden --follow --exclude .git";
-    FZF_CTRL_T_COMMAND = "$FZF_DEFAULT_COMMAND";
-    FZF_ALT_C_COMMAND = "fd --type d --hidden --follow --exclude .git";
-  };
+  # Note: Shell integrations and aliases have been moved to Home Manager
+  # See modules/home-manager/terminal.nix and modules/home-manager/home.nix
 }

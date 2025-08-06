@@ -19,22 +19,22 @@ This document tracks the incremental migration of NixOS system configurations to
 - [x] Test with `nixos-rebuild test`
 
 ### 1.2 Shell Aliases and Environment
-- [ ] Move aliases from `modules/development/productivity.nix`
-- [ ] Migrate environment variables
-- [ ] Configure shell integrations (zoxide, atuin, fzf)
-- [ ] Test all aliases work correctly
+- [x] Move aliases from `modules/development/productivity.nix`
+- [x] Migrate environment variables
+- [x] Configure shell integrations (zoxide, atuin, fzf)
+- [x] Test all aliases work correctly
 
 ### 1.3 SSH Client Configuration
-- [ ] Create SSH client config in Home Manager
-- [ ] Migrate SSH keys and known_hosts
-- [ ] Configure SSH agent
-- [ ] Keep SSH server in system config
+- [x] Create SSH client config in Home Manager
+- [x] Migrate SSH keys and known_hosts
+- [x] Configure SSH agent
+- [x] Keep SSH server in system config
 
 ### 1.4 Tmux User Configuration
-- [ ] Move tmux config to Home Manager
-- [ ] Migrate keybindings and preferences
-- [ ] Test persistent sessions
-- [ ] Verify all plugins work
+- [x] Move tmux config to Home Manager
+- [x] Migrate keybindings and preferences
+- [x] Test persistent sessions
+- [x] Verify all plugins work
 
 ## Phase 2: Development Tools
 ### 2.1 Development Module Structure
