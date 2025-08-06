@@ -373,7 +373,65 @@
     # Documentation
     mdbook
     pandoc
+    
+    # ==== Language-Specific Development Tools ====
+    
+    # Python Development
+    python312Full
+    python312Packages.pip
+    python312Packages.virtualenv
+    python312Packages.ipython
+    python312Packages.black
+    python312Packages.pytest
+    poetry
+    ruff
+    
+    # JavaScript/TypeScript Development
+    nodejs_22
+    nodePackages.npm
+    nodePackages.pnpm
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.prettier
+    fnm  # Fast Node Manager
+    
+    # Rust Development
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    
+    # Go Development  
+    go
+    gopls
+    golangci-lint
+    
+    # Debugging and Profiling
+    hyperfine  # Command-line benchmarking
+    tokei  # Count lines of code
   ];
+  
+  # Language-specific environment variables
+  home.sessionVariables = {
+    # Python
+    PYTHONDONTWRITEBYTECODE = "1";
+    PYTHONUNBUFFERED = "1";
+    
+    # Go
+    GOPATH = "$HOME/go";
+    GOBIN = "$HOME/go/bin";
+    
+    # Rust
+    CARGO_HOME = "$HOME/.cargo";
+    RUSTUP_HOME = "$HOME/.rustup";
+    
+    # Node.js
+    NPM_CONFIG_PREFIX = "$HOME/.npm-global";
+    
+    # Update PATH for language tools
+    PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.local/bin";
+  };
   
   # Shell aliases for development tools
   programs.bash.shellAliases = {
@@ -390,5 +448,47 @@
     # Development
     http = "httpie";
     curl = "curlie";
+    
+    # Python
+    py = "python";
+    py3 = "python3";
+    ipy = "ipython";
+    pip = "pip3";
+    venv = "python -m venv";
+    activate = "source ./venv/bin/activate";
+    
+    # Node.js
+    ni = "npm install";
+    nr = "npm run";
+    ns = "npm start";
+    nt = "npm test";
+    nb = "npm run build";
+    
+    # Rust
+    cb = "cargo build";
+    cr = "cargo run";
+    ct = "cargo test";
+    cc = "cargo check";
+    cf = "cargo fmt";
+    cl = "cargo clippy";
+    
+    # Docker
+    d = "docker";
+    dc = "docker-compose";
+    dps = "docker ps";
+    dimg = "docker images";
+    
+    # Kubernetes
+    k = "kubectl";
+    kgp = "kubectl get pods";
+    kgs = "kubectl get services";
+    kgd = "kubectl get deployments";
+    kaf = "kubectl apply -f";
+    kdel = "kubectl delete";
+    klog = "kubectl logs";
+    kexec = "kubectl exec -it";
   };
+  
+  # Additional language-specific configurations can be added here
+  # For example, rustup configuration, poetry config, etc.
 }

@@ -50,11 +50,11 @@ This document tracks the incremental migration of NixOS system configurations to
 - [x] Move git-extras and hub configs
 
 ### 2.3 Language-Specific Tools
-- [ ] Python development tools
-- [ ] JavaScript/Node.js tools
-- [ ] Rust toolchain
-- [ ] Go development environment
-- [ ] Test each language setup
+- [x] Python development tools
+- [x] JavaScript/Node.js tools
+- [x] Rust toolchain
+- [x] Go development environment
+- [x] Test each language setup
 
 ## Phase 3: Desktop Applications
 ### 3.1 Application Management
