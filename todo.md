@@ -12,11 +12,11 @@ This document tracks the incremental migration of NixOS system configurations to
 
 ## Phase 1: Core User Environment
 ### 1.1 Terminal Configuration
-- [ ] Create `modules/home-manager/terminal.nix`
-- [ ] Migrate bash configuration from system
-- [ ] Migrate fish configuration if present
-- [ ] Migrate zsh configuration if present
-- [ ] Test with `nixos-rebuild test`
+- [x] Create `modules/home-manager/terminal.nix`
+- [x] Migrate bash configuration from system
+- [x] Migrate fish configuration if present
+- [x] Migrate zsh configuration if present
+- [x] Test with `nixos-rebuild test`
 
 ### 1.2 Shell Aliases and Environment
 - [ ] Move aliases from `modules/development/productivity.nix`

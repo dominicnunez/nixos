@@ -142,7 +142,7 @@
     '';
     
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
   };
   
@@ -240,36 +240,6 @@
       "ctrl+shift+w" = "close_tab";
       "ctrl+shift+]" = "next_tab";
       "ctrl+shift+[" = "previous_tab";
-    };
-  };
-  
-  # Alacritty (alternative terminal)
-  programs.alacritty = {
-    enable = false;  # Set to true if you prefer alacritty
-    
-    settings = {
-      window = {
-        padding = {
-          x = 5;
-          y = 5;
-        };
-        decorations = "full";
-      };
-      
-      font = {
-        normal = {
-          family = "JetBrains Mono";
-          style = "Regular";
-        };
-        size = 11;
-      };
-      
-      colors = {
-        primary = {
-          background = "#282a36";
-          foreground = "#f8f8f2";
-        };
-      };
     };
   };
   
