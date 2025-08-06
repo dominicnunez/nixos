@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sudo mkdir:*)",
+      "Bash(sudo git rm:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,0 +1,17 @@
+# Ignore the nixos-config folder (using external repo)
+nixos-config/
+
+# Ignore build results
+result
+result-*
+
+# Ignore hardware-specific files that shouldn't be shared
+# hardware-configuration.nix  # Keep this tracked for this specific machine
+
+# Ignore swap files
+*.swp
+*~
+.*.swp
+
+# Ignore lock files from editors
+.#*
