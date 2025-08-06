@@ -10,15 +10,19 @@
       ./hardware-configuration.nix
       ./cachix.nix
       
+      # Home Manager
+      ./modules/home-manager
+      
       # Development modules
       ./modules/development/tools.nix
       ./modules/development/languages.nix
       ./modules/development/direnv.nix
       ./modules/development/databases.nix
-      ./modules/development/neovim.nix
+      # ./modules/development/neovim.nix  # Moved to Home Manager
       ./modules/development/productivity.nix
       
       # Desktop modules
+      ./modules/desktop/desktop-selector.nix  # Desktop environment switcher
       ./modules/desktop/browsers.nix
       ./modules/desktop/applications.nix
       ./modules/desktop/fonts-themes.nix
@@ -69,9 +73,8 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Desktop environments are now managed in desktop-selector module
+  # Edit modules/desktop/desktop-selector.nix to enable/disable desktop environments
 
   # Configure keymap in X11
   services.xserver.xkb = {
