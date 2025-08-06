@@ -58,10 +58,10 @@ This document tracks the incremental migration of NixOS system configurations to
 
 ## Phase 3: Desktop Applications
 ### 3.1 Application Management
-- [ ] Create `modules/home-manager/applications.nix`
-- [ ] Categorize apps (system vs user)
-- [ ] Move user-specific apps to Home Manager
-- [ ] Test application launches
+- [x] Create `modules/home-manager/applications.nix`
+- [x] Categorize apps (system vs user)
+- [x] Move user-specific apps to Home Manager
+- [x] Test application launches
 
 ### 3.2 Browser Configuration
 - [ ] Create `modules/home-manager/browsers.nix`
