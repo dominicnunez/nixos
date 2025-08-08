@@ -266,8 +266,8 @@
       { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; }
       # Decentraleyes
       { id = "ldpochfccmkkmhdbclfhpagapcfdljkj"; }
-      # ClearURLs
-      { id = "lckanjgmijmafbedllaakclkaicjfmnk"; }
+      # ClearURLs - Removed from Chrome Web Store in 2022
+      # { id = "lckanjgmijmafbedllaakclkaicjfmnk"; }
     ];
   };
   
@@ -294,7 +294,7 @@
       "fihnjjcciajhdojfnbdddfaoknhalnja"  # I don't care about cookies
       "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"  # Privacy Badger
       "ldpochfccmkkmhdbclfhpagapcfdljkj"  # Decentraleyes
-      "lckanjgmijmafbedllaakclkaicjfmnk"  # ClearURLs
+      # "lckanjgmijmafbedllaakclkaicjfmnk"  # ClearURLs - Removed from Chrome Web Store in 2022
     ];
   };
   

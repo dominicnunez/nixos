@@ -28,6 +28,9 @@
       ./modules/desktop/fonts-themes.nix
       ./modules/desktop/gaming.nix
       
+      # Hardware
+      ./modules/hardware/bluetooth.nix
+      
       # Services
       ./modules/services/docker.nix
       ./modules/services/ssh.nix

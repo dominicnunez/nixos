@@ -5,8 +5,8 @@
   # Enhanced Git configuration
   programs.git = {
     enable = true;
-    userName = "Aural"; # Update with your actual name
-    userEmail = "your-email@example.com"; # Update with your actual email
+    userName = "Dominic";
+    userEmail = "dominicnunez@gmail.com";
     
     # Delta - better git diffs
     delta = {
