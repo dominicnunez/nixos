@@ -35,7 +35,8 @@
 
   # Environment variables for development
   environment.variables = {
-    GOPATH = "$HOME/go";
+    # GOPATH is not set - Go 1.16+ uses $HOME/go by default
+    # Setting GOPATH can cause issues with nix-shell environments
     PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin";
   };
   

@@ -29,7 +29,7 @@
   
   # PulseAudio/PipeWire Bluetooth support (you're using PipeWire)
   # This is likely already enabled in your audio config, but let's ensure it
-  hardware.pulseaudio.enable = false;  # We use PipeWire
+  services.pulseaudio.enable = false;  # We use PipeWire
   
   # Packages for Bluetooth management
   environment.systemPackages = with pkgs; [

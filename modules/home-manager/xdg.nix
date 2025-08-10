@@ -265,7 +265,7 @@
     # Application-specific XDG overrides
     CARGO_HOME = "$XDG_DATA_HOME/cargo";
     RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
-    GOPATH = "$XDG_DATA_HOME/go";
+    # GOPATH removed - Go 1.16+ uses $HOME/go by default, setting it causes issues
     NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/npmrc";
     NPM_CONFIG_CACHE = "$XDG_CACHE_HOME/npm";
     PYTHONSTARTUP = "$XDG_CONFIG_HOME/python/pythonrc";
