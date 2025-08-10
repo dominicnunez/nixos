@@ -20,6 +20,7 @@
     # Python tools
     poetry          # Python dependency management
     ruff            # Fast Python linter
+    python312Packages.uv  # Fast Python package installer and resolver
     
     # Go development (if you need it)
     go
