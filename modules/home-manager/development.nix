@@ -363,6 +363,7 @@
     # Code formatting and linting
     pre-commit
     commitizen
+    nixpkgs-fmt  # Nix code formatter for VS Code and CLI
     
     # Development utilities
     jq
