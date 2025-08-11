@@ -10,7 +10,7 @@
       cd /home/aural/Code/nixos
       # Update only claude-code input
       nix flake update claude-code
-      
+
       # Optional: Send notification if update is available
       if git diff --quiet flake.lock; then
         echo "No updates available for claude-code"
@@ -46,18 +46,18 @@
     path = [ pkgs.nix pkgs.git pkgs.nixos-rebuild ];
     script = ''
       cd /home/aural/Code/nixos
-      
+
       # Check if there are changes to flake.lock
       if ! git diff --quiet flake.lock; then
         echo "Updates found, rebuilding system..."
-        
+
         # Create a backup tag before rebuilding
         git add flake.lock
         git commit -m "Auto-update: claude-code flake" || true
-        
+
         # Rebuild the system
         sudo nixos-rebuild switch --flake /home/aural/Code/nixos
-        
+
         # Notify user
         ${pkgs.libnotify}/bin/notify-send "System Updated" "claude-code has been updated and system rebuilt" || true
       fi

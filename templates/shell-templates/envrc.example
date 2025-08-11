@@ -1,0 +1,22 @@
+# Example .envrc file for direnv
+# Copy this to your project root as .envrc
+
+# Use Nix shell
+use nix
+
+# Optional: Load environment variables from .env file
+# dotenv
+
+# Optional: Set project-specific environment variables
+# export API_KEY="development-key"
+# export DATABASE_URL="postgresql://localhost/myapp_dev"
+
+# Optional: Add project bin directory to PATH
+# PATH_add bin
+
+# Optional: Source project-specific scripts
+# source_env_if_exists .envrc.local
+
+# Optional: Layout for specific languages
+# layout python  # For Python projects with virtualenv
+# layout node    # For Node.js projects

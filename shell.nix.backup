@@ -1,0 +1,216 @@
+{ pkgs ? import <nixpkgs> {} }:
+
+pkgs.mkShell {
+  buildInputs = with pkgs; [
+    # Node.js environments
+    nodejs_22
+    # nodejs_20
+    # nodejs_18
+    # yarn
+    # pnpm
+    # bun
+
+    # Go development
+    go
+    # go_1_23
+    # go_1_22
+    # go_1_21
+    # gopls
+    # gotools
+    # go-migrate
+    # golangci-lint
+    # delve
+    # gore
+    # gomodifytags
+    # gotests
+    # gocode
+
+    # Python environments
+    # python312
+    # python311
+    # python310
+    # python312Packages.pip
+    # python312Packages.virtualenv
+    # python312Packages.pytest
+    # python312Packages.black
+    # python312Packages.flake8
+    # python312Packages.mypy
+    # poetry
+    # pipenv
+
+    # Rust development
+    # rustc
+    # cargo
+    # rustfmt
+    # clippy
+    # rust-analyzer
+
+    # C/C++ development
+    # gcc
+    # clang
+    # cmake
+    # gnumake
+    # valgrind
+    # gdb
+
+    # Java/JVM
+    # jdk21
+    # jdk17
+    # jdk11
+    # maven
+    # gradle
+    # sbt
+    # kotlin
+
+    # Database tools
+    # postgresql_16
+    # mysql80
+    # redis
+    # mongodb-7_0
+    # sqlite
+    # postgresql16Packages.pgcli
+    # mycli
+    # mongosh
+
+    # Container/Cloud tools
+    # docker
+    # docker-compose
+    # kubectl
+    # kubernetes-helm
+    # minikube
+    # kind
+    # podman
+    # buildah
+    # skopeo
+    # terraform
+    # awscli2
+    # google-cloud-sdk
+    # azure-cli
+
+    # Version control
+    # git
+    # gh
+    # gitlab
+    # lazygit
+    # tig
+
+    # Build tools
+    # bazel
+    # ninja
+    # meson
+    # autoconf
+    # automake
+    # libtool
+    # pkg-config
+
+    # Testing/Quality tools
+    # k6
+    # gatling
+    # jmeter
+    # locust
+    # wrk
+    # vegeta
+
+    # Security tools
+    # trivy
+    # grype
+    # syft
+    # cosign
+    # vault
+    # sops
+
+    # Networking tools
+    # curl
+    # wget
+    # httpie
+    # grpcurl
+    # wireshark
+    # tcpdump
+    # nmap
+    # netcat
+
+    # Text processing
+    # jq
+    # yq
+    # ripgrep
+    # fd
+    # bat
+    # exa
+    # fzf
+    # tmux
+    # neovim
+
+    # Documentation
+    # pandoc
+    # hugo
+    # mdbook
+    # asciidoctor
+
+    # Protocol buffers/gRPC
+    # protobuf
+    # grpc
+    # grpcui
+    # grpcurl
+    # buf
+
+    # Message queues
+    # rabbitmq-server
+    # kafka
+    # nats-server
+    # mosquitto
+
+    # Monitoring/Observability
+    # prometheus
+    # grafana
+    # telegraf
+    # influxdb2
+    # elasticsearch
+    # kibana
+    # logstash
+
+    # Development utilities
+    # direnv
+    # entr
+    # watchman
+    # pre-commit
+    # shellcheck
+    # shfmt
+    # hadolint
+
+    # Language servers (for editors)
+    # nil # Nix LSP
+    # yaml-language-server
+    # vscode-langservers-extracted # HTML/CSS/JSON/ESLint
+    # typescript-language-server
+    # pyright
+    # ruff-lsp
+    # lua-language-server
+    # bash-language-server
+    # dockerfile-language-server-nodejs
+    # terraform-ls
+    # ansible-language-server
+  ];
+
+  shellHook = ''
+    echo "Development environment loaded"
+    echo "Node $(node --version 2>/dev/null || echo 'not installed')"
+    echo "npm $(npm --version 2>/dev/null || echo 'not installed')"
+    echo "Go $(go version 2>/dev/null || echo 'not installed')"
+    # echo "Python $(python --version 2>/dev/null || echo 'not installed')"
+    # echo "Rust $(rustc --version 2>/dev/null || echo 'not installed')"
+    # echo "Docker $(docker --version 2>/dev/null || echo 'not installed')"
+  '';
+
+  # Environment variables
+  # GOPATH = "${toString ./.}/go";
+  # GOPROXY = "https://proxy.golang.org,direct";
+  # CGO_ENABLED = "1";
+  # NODE_ENV = "development";
+  # RUST_BACKTRACE = "1";
+  # DOCKER_BUILDKIT = "1";
+
+  # Additional shell configuration
+  # hardeningDisable = [ "fortify" ];
+  # NIX_LDFLAGS = "-L${pkgs.zlib}/lib";
+  # NIX_CFLAGS_COMPILE = "-I${pkgs.zlib.dev}/include";
+}
