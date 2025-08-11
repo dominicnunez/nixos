@@ -36,6 +36,9 @@
       ./modules/services/ssh.nix
       ./modules/services/vpn.nix
       
+      # System
+      ./modules/system/auto-update-flakes.nix
+      
       # Security
       ./modules/security/hardening.nix
     ];
