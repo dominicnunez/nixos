@@ -7,7 +7,7 @@
     enable = true;
     userName = "Dominic";
     userEmail = "dominicnunez@gmail.com";
-    
+
     # Delta - better git diffs
     delta = {
       enable = true;
@@ -26,89 +26,89 @@
         };
       };
     };
-    
+
     extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
       core.editor = "nvim";
-      
+
       # Better diff and merge
       merge.conflictstyle = "diff3";
       diff.colorMoved = "default";
       diff.algorithm = "histogram";
-      
+
       # Performance
       core.preloadindex = true;
       core.fscache = true;
       gc.auto = 256;
-      
+
       # Rebase
       rebase.autoStash = true;
       rebase.autoSquash = true;
-      
+
       # Fetch
       fetch.prune = true;
       fetch.prunetags = true;
-      
+
       # Better log
       log.date = "relative";
       format.pretty = "format:%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s";
-      
+
       # URL shortcuts
       url."git@github.com:".insteadOf = "gh:";
       url."git@gitlab.com:".insteadOf = "gl:";
       url."git@bitbucket.org:".insteadOf = "bb:";
     };
-    
+
     # Comprehensive Git aliases
     aliases = {
       # Status and info
       st = "status -sb";
       s = "status -s";
-      
+
       # Commits
       ci = "commit";
       cm = "commit -m";
       ca = "commit --amend";
       can = "commit --amend --no-edit";
-      
+
       # Branches
       br = "branch";
       co = "checkout";
       cob = "checkout -b";
       brd = "branch -d";
       brD = "branch -D";
-      
+
       # Staging
       a = "add";
       aa = "add --all";
       ap = "add --patch";
       unstage = "reset HEAD --";
-      
+
       # Diffs
       d = "diff";
       ds = "diff --staged";
       dt = "difftool";
-      
+
       # Logs
       l = "log --oneline --graph --decorate";
       lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
       lga = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all";
       last = "log -1 HEAD --stat";
-      
+
       # Remote
       f = "fetch";
       fa = "fetch --all";
       p = "push";
       pf = "push --force-with-lease";
       pl = "pull";
-      
+
       # Stash
       ss = "stash save";
       sp = "stash pop";
       sl = "stash list";
-      
+
       # Reset
       r = "reset";
       r1 = "reset HEAD^";
@@ -116,28 +116,28 @@
       rh = "reset --hard";
       rh1 = "reset HEAD^ --hard";
       rh2 = "reset HEAD^^ --hard";
-      
+
       # Cherry-pick
       cp = "cherry-pick";
       cpa = "cherry-pick --abort";
       cpc = "cherry-pick --continue";
-      
+
       # Rebase
       rb = "rebase";
       rbi = "rebase -i";
       rbc = "rebase --continue";
       rba = "rebase --abort";
       rbs = "rebase --skip";
-      
+
       # Utils
       aliases = "config --get-regexp alias";
       whoami = "config user.name";
-      
+
       # Find
       find = "!git ls-files | grep -i";
       grep = "grep -Ii";
     };
-    
+
     # Ignore global files
     ignores = [
       # OS
@@ -146,7 +146,7 @@
       "*.swp"
       "*.swo"
       "*~"
-      
+
       # IDE
       ".idea/"
       ".vscode/"
@@ -154,7 +154,7 @@
       ".project"
       ".classpath"
       ".settings/"
-      
+
       # Languages
       "__pycache__/"
       "*.pyc"
@@ -162,16 +162,16 @@
       ".npm/"
       "target/"
       "*.class"
-      
+
       # Env
       ".env"
       ".env.local"
       ".envrc"
-      
+
       # Logs
       "*.log"
       "logs/"
-      
+
       # Build
       "dist/"
       "build/"
@@ -182,7 +182,7 @@
       "*.dll"
     ];
   };
-  
+
   # Lazygit - Terminal UI for git
   programs.lazygit = {
     enable = true;
@@ -197,7 +197,7 @@
         showBottomLine = true;
         nerdFontsVersion = "3";
       };
-      
+
       git = {
         paging = {
           colorArg = "always";
@@ -211,13 +211,13 @@
           args = "";
         };
       };
-      
+
       os = {
         editCommand = "nvim";
         editCommandTemplate = "{{editor}} {{filename}}";
         openCommand = "xdg-open {{filename}}";
       };
-      
+
       keybinding = {
         universal = {
           quit = "q";
@@ -238,7 +238,7 @@
           refresh = "R";
         };
       };
-      
+
       customCommands = [
         {
           key = "C";
@@ -249,54 +249,54 @@
       ];
     };
   };
-  
+
   # Gitui - Fast terminal UI for git (Rust-based)
   programs.gitui = {
     enable = true;
     keyConfig = ''
       (
         open_help: Some(( code: F(1), modifiers: "")),
-        
+
         move_left: Some(( code: Char('h'), modifiers: "")),
         move_right: Some(( code: Char('l'), modifiers: "")),
         move_up: Some(( code: Char('k'), modifiers: "")),
         move_down: Some(( code: Char('j'), modifiers: "")),
-        
+
         popup_up: Some(( code: Char('p'), modifiers: "CONTROL")),
         popup_down: Some(( code: Char('n'), modifiers: "CONTROL")),
         page_up: Some(( code: Char('b'), modifiers: "CONTROL")),
         page_down: Some(( code: Char('f'), modifiers: "CONTROL")),
         home: Some(( code: Char('g'), modifiers: "")),
         end: Some(( code: Char('G'), modifiers: "SHIFT")),
-        
+
         shift_up: Some(( code: Char('K'), modifiers: "SHIFT")),
         shift_down: Some(( code: Char('J'), modifiers: "SHIFT")),
-        
+
         status_reset_item: Some(( code: Char('U'), modifiers: "SHIFT")),
         diff_reset_lines: Some(( code: Char('u'), modifiers: "")),
         diff_stage_lines: Some(( code: Char('s'), modifiers: "")),
-        
+
         stashing_save: Some(( code: Char('w'), modifiers: "")),
         stashing_toggle_index: Some(( code: Char('m'), modifiers: "")),
-        
+
         edit_file: Some(( code: Char('I'), modifiers: "SHIFT")),
-        
+
         select_status: Some(( code: Tab, modifiers: "")),
         select_branch: Some(( code: Char('b'), modifiers: "")),
         select_commit: Some(( code: Char('l'), modifiers: "")),
         select_stash: Some(( code: Char('s'), modifiers: "")),
-        
+
         open_commit: Some(( code: Enter, modifiers: "")),
         open_commit_editor: Some(( code: Char('e'), modifiers: "")),
-        
+
         undo_commit: Some(( code: Char('U'), modifiers: "SHIFT")),
-        
+
         toggle_diff_stage: Some(( code: Char('s'), modifiers: "")),
         toggle_file_tree: Some(( code: Char('t'), modifiers: "")),
-        
+
         push: Some(( code: Char('p'), modifiers: "")),
         pull: Some(( code: Char('f'), modifiers: "")),
-        
+
         quit: Some(( code: Char('q'), modifiers: "")),
       )
     '';
@@ -325,7 +325,7 @@
       )
     '';
   };
-  
+
   # GitHub CLI
   programs.gh = {
     enable = true;
@@ -333,7 +333,7 @@
       git_protocol = "ssh";
       prompt = "enabled";
       editor = "nvim";
-      
+
       aliases = {
         co = "pr checkout";
         pv = "pr view";
@@ -347,7 +347,7 @@
       };
     };
   };
-  
+
   # Development packages
   home.packages = with pkgs; [
     # Git tools
@@ -359,24 +359,24 @@
     gitAndTools.diff-so-fancy
     gitAndTools.hub
     tig
-    
+
     # Code formatting and linting
     pre-commit
     commitizen
     nixpkgs-fmt  # Nix code formatter for VS Code and CLI
-    
+
     # Development utilities
     jq
     yq
     httpie
     curlie
-    
+
     # Documentation
     mdbook
     pandoc
-    
+
     # ==== Language-Specific Development Tools ====
-    
+
     # Python Development
     python312Full
     python312Packages.pip
@@ -386,7 +386,7 @@
     python312Packages.pytest
     poetry
     ruff
-    
+
     # JavaScript/TypeScript Development
     nodejs_22
     nodePackages.npm
@@ -394,58 +394,65 @@
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.prettier
-    fnm  # Fast Node Manager
-    
+
     # Rust Development
     rustc
     cargo
     rustfmt
     clippy
     rust-analyzer
-    
-    # Go Development  
+
+    # Go Development
     go
     gopls
     golangci-lint
+
+    # Go development tools
+    go-outline         # Go code outline
+    gomodifytags       # Modify struct tags
+    gotests            # Generate tests
+    gocode-gomod       # Autocomplete daemon
+
+    # Code quality tools
+    govulncheck        # Vulnerability checker
+    go-tools           # Additional tools (staticcheck, etc.)
+
+    # Debugging and profiling
+    delve              # Debugger
+    gore               # REPL
+    graphviz           # For pprof graphs
     
     # Debugging and Profiling
     hyperfine  # Command-line benchmarking
     tokei  # Count lines of code
   ];
-  
+
   # Language-specific environment variables
   home.sessionVariables = {
     # Python
     PYTHONDONTWRITEBYTECODE = "1";
     PYTHONUNBUFFERED = "1";
-    
-    # Go (moved to xdg.nix for XDG compliance)
-    GOBIN = "$HOME/go/bin";
-    
-    # Rust (CARGO_HOME and RUSTUP_HOME moved to xdg.nix for XDG compliance)
-    
-    # Node.js (NPM_CONFIG_PREFIX moved to xdg.nix for XDG compliance)
-    
+
     # Update PATH for language tools
     PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.local/bin";
   };
-  
+
   # Shell aliases for development tools
   programs.bash.shellAliases = {
     # Git shortcuts (in addition to git aliases)
     g = "git";
     lg = "lazygit";
     gu = "gitui";
-    
+
     # GitHub CLI
     ghpr = "gh pr";
     ghis = "gh issue";
     ghrp = "gh repo";
-    
+
     # Development
     http = "httpie";
     curl = "curlie";
-    
+
     # Python
     py = "python";
     py3 = "python3";
@@ -453,14 +460,14 @@
     pip = "pip3";
     venv = "python -m venv";
     activate = "source ./venv/bin/activate";
-    
+
     # Node.js
     ni = "npm install";
     nr = "npm run";
     ns = "npm start";
     nt = "npm test";
     nb = "npm run build";
-    
+
     # Rust
     cb = "cargo build";
     cr = "cargo run";
@@ -468,13 +475,13 @@
     cc = "cargo check";
     cf = "cargo fmt";
     cl = "cargo clippy";
-    
+
     # Docker
     d = "docker";
     dc = "docker-compose";
     dps = "docker ps";
     dimg = "docker images";
-    
+
     # Kubernetes
     k = "kubectl";
     kgp = "kubectl get pods";
@@ -485,7 +492,7 @@
     klog = "kubectl logs";
     kexec = "kubectl exec -it";
   };
-  
+
   # Additional language-specific configurations can be added here
   # For example, rustup configuration, poetry config, etc.
 }
