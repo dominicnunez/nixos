@@ -170,8 +170,8 @@
       bierner.markdown-mermaid
 
       # Remote Development
-      ms-vscode-remote.remote-ssh
-      ms-vscode-remote.remote-containers
+      # ms-vscode-remote.remote-ssh
+      # ms-vscode-remote.remote-containers
         ];
       };
     };

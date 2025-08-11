@@ -53,8 +53,8 @@
       rm = "rm -iv";
       
       # NixOS specific
-      rebuild = "sudo nixos-rebuild switch";
-      rebuild-test = "sudo nixos-rebuild test";
+      rebuild = "sudo nixos-rebuild switch --flake /home/aural/Code/nixos";
+      rebuild-test = "sudo nixos-rebuild test --flake /home/aural/Code/nixos";
       nix-clean = "sudo nix-collect-garbage -d";
       nix-search = "nix search nixpkgs";
     };
