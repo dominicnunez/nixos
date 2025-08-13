@@ -8,7 +8,7 @@ let
     # Full Desktop Environments
     plasma = true;      # KDE Plasma (currently enabled)
     gnome = false;      # GNOME
-    xfce = false;       # XFCE - disabled to prevent notification conflicts with KDE
+    xfce = true;        # XFCE - re-enabled, will configure to work with KDE
     cinnamon = false;   # Cinnamon
     mate = false;       # MATE
     budgie = false;     # Budgie
@@ -146,6 +146,23 @@ in
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
     ];
+  };
+  
+  # Exclude XFCE notification daemon when both KDE and XFCE are enabled
+  # This prevents notification conflicts and ensures KDE notifications work properly
+  environment.xfce.excludePackages = lib.mkIf (desktopConfig.plasma && desktopConfig.xfce) [
+    pkgs.xfce.xfce4-notifyd
+  ];
+  
+  # Ensure KDE notification service takes priority when both are installed
+  systemd.user.services.ensure-kde-notifications = lib.mkIf (desktopConfig.plasma && desktopConfig.xfce) {
+    description = "Ensure KDE notifications are used instead of XFCE";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.bash}/bin/bash -c 'mkdir -p ~/.local/share/dbus-1/services/ && ln -sf /run/current-system/sw/share/dbus-1/services/org.kde.plasma.Notifications.service ~/.local/share/dbus-1/services/org.freedesktop.Notifications.service'";
+    };
   };
 }
 
