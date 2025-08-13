@@ -42,6 +42,7 @@
 
   # KDE Plasma notification configuration
   # Configure notifications to appear in bottom right corner
+  # Note: XFCE must be disabled in desktop-selector.nix to prevent conflicts
   xdg.configFile."plasmanotifyrc" = {
     text = ''
       [DoNotDisturb]
@@ -58,6 +59,7 @@
       PopupTimeout=5000
       ShowInHistory=true
     '';
+    force = true;  # Ensure this config overrides any existing one
   };
 
   # Create test notification script
@@ -76,6 +78,38 @@
       echo "You can also try:"
       echo "  - Critical: notify-send -u critical 'Critical' 'This is urgent'"
       echo "  - Low priority: notify-send -u low 'Low Priority' 'Not urgent'"
+    '';
+  };
+  
+  # Create script to fix notification system
+  home.file.".local/bin/fix-kde-notifications" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      # Script to ensure KDE notification system is running properly
+      
+      echo "Fixing KDE notification system..."
+      
+      # Kill any xfce4-notifyd processes that might be running
+      if pgrep -x "xfce4-notifyd" > /dev/null; then
+        echo "Stopping xfce4-notifyd..."
+        pkill -x xfce4-notifyd
+      fi
+      
+      # Restart plasmashell to reload notification configuration
+      echo "Restarting plasmashell..."
+      kquitapp6 plasmashell 2>/dev/null || kquitapp5 plasmashell 2>/dev/null || true
+      sleep 2
+      plasmashell --no-respawn &
+      disown
+      
+      echo "KDE notification system should now be active."
+      echo "Test with: test-notification"
+      
+      # Check which notification server is active
+      echo ""
+      echo "Active notification server:"
+      qdbus org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.GetServerInformation 2>/dev/null || echo "Could not query notification server"
     '';
   };
 

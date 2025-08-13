@@ -8,7 +8,7 @@ let
     # Full Desktop Environments
     plasma = true;      # KDE Plasma (currently enabled)
     gnome = false;      # GNOME
-    xfce = true;        # XFCE - lightweight option enabled for testing
+    xfce = false;       # XFCE - disabled to prevent notification conflicts with KDE
     cinnamon = false;   # Cinnamon
     mate = false;       # MATE
     budgie = false;     # Budgie
