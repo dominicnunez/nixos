@@ -61,10 +61,16 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
+    
+    # Allow VS Code to manage extensions in a mutable directory
+    mutableExtensionsDir = true;
 
     # Default profile with settings and extensions
     profiles = {
       default = {
+        # Disable update checks (managed by Nix)
+        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = false;
         # User settings
         userSettings = {
           # Editor settings
@@ -337,6 +343,11 @@
           # Spell Checker settings (when installed)
           "cSpell.language" = "en";
           "cSpell.userWords" = [];
+
+          # Chat settings for Claude/GitHub Copilot
+          "chat.instructionsFilesLocations" = {
+            ".github/instructions" = true;
+          };
         };
 
         # Extensions to install
