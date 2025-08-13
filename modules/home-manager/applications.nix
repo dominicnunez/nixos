@@ -127,10 +127,10 @@
       pkief.material-icon-theme
 
       # General
-      editorconfig.editorconfig
-      streetsidesoftware.code-spell-checker
-      usernamehw.errorlens
-      gruntfuggly.todo-tree
+      # editorconfig.editorconfig
+      # streetsidesoftware.code-spell-checker
+      # usernamehw.errorlens
+      # gruntfuggly.todo-tree
 
       # Git
       eamodio.gitlens
@@ -152,7 +152,6 @@
 
       # Rust
       rust-lang.rust-analyzer
-      serayuzgur.crates
       tamasfe.even-better-toml
 
       # Go
