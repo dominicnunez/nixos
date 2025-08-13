@@ -32,11 +32,51 @@
   # Basic user packages (these will be available only to this user)
   home.packages = with pkgs; [
     # We'll add user-specific packages here as we migrate
+    libnotify  # For notify-send command to test notifications
   ];
 
   # Basic configuration to start
   home.sessionVariables = {
     EDITOR = "nvim";
+  };
+
+  # KDE Plasma notification configuration
+  # Configure notifications to appear in bottom right corner
+  xdg.configFile."plasmanotifyrc" = {
+    text = ''
+      [DoNotDisturb]
+      NotificationSounds=true
+      WhenScreensMirrored=false
+      
+      [Notifications]
+      CriticalAlwaysOnTop=true
+      LowPriorityHistory=true  
+      NormalAlwaysOnTop=false
+      PopupMargin=10
+      PopupPosition=BottomRight
+      PopupScreen=@Point
+      PopupTimeout=5000
+      ShowInHistory=true
+    '';
+  };
+
+  # Create test notification script
+  home.file.".local/bin/test-notification" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      # Test notification script
+      
+      echo "Sending test notification..."
+      notify-send "Test Notification" "This should appear in the bottom right corner" \
+        --icon=dialog-information \
+        --expire-time=5000
+      
+      echo "Sent! Check if it appeared in the bottom right corner."
+      echo "You can also try:"
+      echo "  - Critical: notify-send -u critical 'Critical' 'This is urgent'"
+      echo "  - Low priority: notify-send -u low 'Low Priority' 'Not urgent'"
+    '';
   };
 
   # Git configuration moved to development.nix
