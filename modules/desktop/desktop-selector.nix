@@ -121,6 +121,14 @@ in
     (lib.optionals (desktopConfig.gnome || desktopConfig.xfce || desktopConfig.cinnamon || desktopConfig.mate) [
       networkmanagerapplet
     ])
+    
+    # Fix breeze theme package collisions between Qt5 and Qt6 versions
+    # This collision occurs when Plasma 6 (Qt6) and some Qt5 apps both try to install breeze themes
+    (lib.optionals desktopConfig.plasma [
+      # Explicitly prioritize Qt6 breeze packages to resolve conflicts
+      (lib.hiPrio kdePackages.breeze-icons)
+      (lib.hiPrio kdePackages.breeze-gtk)
+    ])
   ];
   
   # Wayland support
@@ -153,6 +161,7 @@ in
   environment.xfce.excludePackages = lib.mkIf (desktopConfig.plasma && desktopConfig.xfce) [
     pkgs.xfce.xfce4-notifyd
   ];
+
   
   # Ensure KDE notification service takes priority when both are installed
   systemd.user.services.ensure-kde-notifications = lib.mkIf (desktopConfig.plasma && desktopConfig.xfce) {
