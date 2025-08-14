@@ -27,7 +27,7 @@
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
-    vscode
+    # vscode configured via programs.vscode module below
     # vscodium  # Open source VS Code
     # jetbrains.idea-community  # IntelliJ IDEA
     # sublime4  # Sublime Text
@@ -57,7 +57,7 @@
 
   # Application-specific configurations
 
-  # VS Code configuration
+  # VS Code configuration - Minimal setup with full extension management freedom
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
@@ -69,83 +69,13 @@
     # The settings.json file at ~/.config/Code/User/settings.json
     # is now managed manually by the user, not by NixOS
 
-    # Configuration profiles
-    profiles = {
-      default = {
-        # Extensions to install (moved to new location per deprecation warning)
-        extensions = with pkgs.vscode-extensions; [
-          # Themes and Icons
-          dracula-theme.theme-dracula
-          pkief.material-icon-theme
-          vscode-icons-team.vscode-icons
-
-          # General Development Tools
-          editorconfig.editorconfig
-          streetsidesoftware.code-spell-checker
-          usernamehw.errorlens
-          gruntfuggly.todo-tree
-
-          # Git Integration
-          eamodio.gitlens
-          mhutchie.git-graph
-          donjayamanne.githistory
-          github.vscode-pull-request-github
-
-          # Nix
-          jnoortheen.nix-ide
-
-          # Python
-          ms-python.python
-          ms-python.vscode-pylance
-          ms-python.black-formatter
-          ms-python.isort
-          ms-python.debugpy
-
-          # JavaScript/TypeScript/Web
-          dbaeumer.vscode-eslint
-          esbenp.prettier-vscode
-          bradlc.vscode-tailwindcss
-          stylelint.vscode-stylelint
-
-          # Rust
-          rust-lang.rust-analyzer
-          tamasfe.even-better-toml
-          fill-labs.dependi
-
-          # Go
-          golang.go
-
-          # Docker/Kubernetes/Containers
-          ms-azuretools.vscode-docker
-          ms-kubernetes-tools.vscode-kubernetes-tools
-          ms-vscode-remote.remote-containers
-
-          # YAML/JSON/Data Formats
-          redhat.vscode-yaml
-
-          # Markdown
-          yzhang.markdown-all-in-one
-          bierner.markdown-mermaid
-          davidanson.vscode-markdownlint
-
-          # Remote Development
-          # ms-vscode-remote.remote-ssh  # Uncomment if needed
-
-          # Microsoft IntelliSense
-          visualstudioexptteam.vscodeintellicode
-          visualstudioexptteam.intellicode-api-usage-examples
-
-          # API Testing
-          # postman.postman-for-vscode  # Not commonly available in nixpkgs
-        ] ++ (
-          # Extensions not available in nixpkgs but can be fetched from marketplace
-          pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-            # Note: Claude Code extension is already added via overlay in flake.nix
-            # Add any other marketplace extensions here if needed
-          ]
-        );
-      };
-    };
+    # No extensions managed by Nix - VS Code has full control
+    # All extensions should be installed through VS Code's extension marketplace
+    # This allows for:
+    # - Automatic updates
+    # - Easy installation/removal
+    # - Access to the full marketplace
+    # - User preferences for extension versions
   };
 
   # Browser configurations moved to browsers.nix

@@ -11,7 +11,7 @@
     vlc              # Media player
     
     # Development IDE
-    vscode           # VS Code without extensions initially
+    # vscode moved to home-manager configuration for better user control
     
     # Productivity
     obsidian         # Note-taking
