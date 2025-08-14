@@ -21,6 +21,7 @@
 
     # ===== Productivity =====
     obsidian
+    standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
     # notion-app-enhanced  # Note-taking
