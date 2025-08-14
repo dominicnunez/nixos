@@ -42,7 +42,6 @@
     flameshot  # Screenshot tool
     # copyq  # Clipboard manager
     peek  # GIF recorder
-    ksnip  # Alternative screenshot tool
 
     # ===== Gaming =====
     # Gaming packages moved to gaming.nix
