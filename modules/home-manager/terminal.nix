@@ -44,6 +44,7 @@
       cdi = "zi";     # Interactive directory jump
       lg = "lazygit";
       g = "git";
+      c = "claude";
       
       # System shortcuts
       cls = "clear";
@@ -111,6 +112,7 @@
       cdi = "zi";
       lg = "lazygit";
       g = "git";
+      c = "claude";
     };
     
     interactiveShellInit = ''
@@ -135,6 +137,7 @@
       cdi = "zi";
       lg = "lazygit";
       g = "git";
+      c = "claude";
     };
     
     initExtra = ''
