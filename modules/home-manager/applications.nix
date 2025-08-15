@@ -24,7 +24,7 @@
     standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
-    # notion-app-enhanced  # Note-taking
+    notion-app-enhanced  # Note-taking
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
@@ -46,6 +46,9 @@
 
     # ===== Gaming =====
     # Gaming packages moved to gaming.nix
+
+    # ===== AI & Terminal Tools =====
+    gemini-cli  # Google Gemini AI agent for terminal
 
     # ===== Additional Tools =====
     gimp  # Image editor
