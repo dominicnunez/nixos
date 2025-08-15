@@ -24,7 +24,7 @@
     standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
-    notion-app  # Note-taking (replaced notion-app-enhanced for better stability)
+    notion-app-enhanced  # Note-taking (Linux-compatible version with enhancer)
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
@@ -84,14 +84,14 @@
   # Browser configurations moved to browsers.nix
 
   # ===== Notion Configuration =====
-  # Fix for Notion blank window issue on NixOS/Linux
-  home.file.".local/share/applications/notion-app.desktop".text = ''
+  # Fix for Notion blank window issue on NixOS/Linux using notion-app-enhanced
+  home.file.".local/share/applications/notion-app-enhanced.desktop".text = ''
     [Desktop Entry]
-    Name=Notion
-    Comment=Write, plan, collaborate, and get organized
+    Name=Notion Enhanced
+    Comment=Write, plan, collaborate, and get organized (with enhancer)
     GenericName=Productivity
-    Exec=notion-app --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --disable-software-rasterizer --disable-features=VizDisplayCompositor %U
-    Icon=notion-app
+    Exec=notion-app-enhanced --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --disable-software-rasterizer --disable-features=VizDisplayCompositor %U
+    Icon=notion-app-enhanced
     Type=Application
     StartupNotify=true
     StartupWMClass=Notion
