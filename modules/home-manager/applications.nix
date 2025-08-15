@@ -18,6 +18,10 @@
     # mpv  # Alternative video player
     # audacity  # Audio editor
     # obs-studio  # Streaming/recording
+    
+    # Video downloaders
+    yt-dlp  # Actively maintained youtube-dl fork (recommended)
+    # youtube-dl  # Original youtube downloader (outdated, use yt-dlp instead)
 
     # ===== Productivity =====
     obsidian
@@ -66,7 +70,7 @@
     # Gaming packages moved to gaming.nix
 
     # ===== AI & Terminal Tools =====
-    # gemini-cli  # Google Gemini AI agent for terminal - temporarily disabled due to hash mismatch
+    gemini-cli  # Google Gemini AI agent for terminal
 
     # ===== Additional Tools =====
     gimp  # Image editor
