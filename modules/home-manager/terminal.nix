@@ -53,6 +53,12 @@
       mv = "mv -iv";
       rm = "rm -iv";
       
+      # Claude Code utilities
+      cctkn = "python /home/aural/.claude/token_usage_report.py";
+      
+      # AI CLI shortcuts
+      gm = "gemini";
+      
       # NixOS specific
       rebuild = "sudo nixos-rebuild switch --flake /home/aural/Code/nixos";
       rebuild-test = "sudo nixos-rebuild test --flake /home/aural/Code/nixos";

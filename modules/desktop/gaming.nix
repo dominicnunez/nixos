@@ -44,28 +44,39 @@
     r2modman           # Mod manager for Unity games
   ];
 
-  # Hardware support for gaming
+  # Hardware support for gaming and desktop acceleration
   hardware = {
-    # Graphics support (already configured but ensuring 32-bit for games)
+    # Graphics support with full hardware acceleration
     graphics = {
       enable = true;
       enable32Bit = true;
       
-      # Enable Vulkan
+      # Enable Vulkan and OpenGL acceleration
       extraPackages = with pkgs; [
         vulkan-loader
         vulkan-validation-layers
         vulkan-tools
         
-        # VA-API support for video acceleration (needed for Electron apps like Notion)
+        # VA-API support for video acceleration
         libva
         libva-utils
+        
+        # Mesa drivers for AMD GPUs with full acceleration
         mesa
+        # mesa.drivers is deprecated, mesa includes drivers now
+        
+        # GPU-specific acceleration packages are in gpu-acceleration.nix
+        
+        # Additional video acceleration
+        vaapiVdpau
+        libvdpau-va-gl
       ];
       
       # 32-bit support for games
       extraPackages32 = with pkgs.pkgsi686Linux; [
         libva
+        mesa
+        # mesa.drivers is deprecated, mesa includes drivers now
       ];
     };
     
@@ -89,7 +100,7 @@
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
         gpu_device = 0;
-        amd_performance_level = "high";  # For AMD GPUs
+        # Performance level is auto-managed by NVIDIA drivers
       };
       
       cpu = {
@@ -108,17 +119,15 @@
     ];
   };
 
-  # Kernel parameters for better gaming performance
+  # Kernel parameters for better gaming and desktop performance
   boot.kernelParams = [
     "quiet"
     "splash"
-    # Uncomment for AMD GPUs:
-    # "radeon.cik_support=0"
-    # "amdgpu.cik_support=1" 
-    # "amdgpu.dc=1"
     
-    # Uncomment for NVIDIA GPUs:
-    # "nvidia-drm.modeset=1"
+    # GPU-specific kernel parameters are now in gpu-acceleration.nix
+    
+    # Additional performance tuning
+    "transparent_hugepage=always"        # Better memory performance
   ];
 
   # Better scheduling for gaming

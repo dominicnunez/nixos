@@ -30,11 +30,16 @@
     # logseq  # Alternative knowledge base
     
     # Notion with custom wrapper for AMD GPU compatibility
-    # Using simplified flags to avoid internal errors
+    # Isolates GPU workarounds to Notion only, preserving system performance
     (pkgs.writeShellScriptBin "notion" ''
-      # Force software rendering to avoid AMD GPU issues
+      # Force software rendering ONLY for Notion to avoid blank window
+      # These environment variables are scoped to this process only
       export LIBGL_ALWAYS_SOFTWARE=1
       export ELECTRON_DISABLE_GPU=1
+      
+      # Unset any system-wide GPU acceleration that might conflict
+      unset LIBGL_DRI3_ENABLE
+      unset __GL_SYNC_TO_VBLANK
       
       # Launch notion-app-enhanced with minimal GPU workarounds
       # Reduced flags to avoid "callback called more than once" errors
@@ -129,7 +134,7 @@
   home.file.".local/share/applications/notion-enhanced-fixed.desktop".text = ''
     [Desktop Entry]
     Name=Notion Enhanced (Direct)
-    Comment=Write, plan, collaborate, and get organized (direct launcher with simplified GPU fix)
+    Comment=Write, plan, collaborate, and get organized (isolated GPU workaround)
     GenericName=Productivity
     Exec=env LIBGL_ALWAYS_SOFTWARE=1 ELECTRON_DISABLE_GPU=1 notion-app-enhanced --no-sandbox --disable-gpu --use-gl=swiftshader %U
     Icon=notion-app-enhanced
@@ -144,14 +149,21 @@
   # Alternative direct launcher script
   home.file.".local/bin/notion-launcher".text = ''
     #!/usr/bin/env bash
-    # Direct launcher for Notion with comprehensive GPU workarounds
+    # Direct launcher for Notion with isolated GPU workarounds
+    # Only affects Notion, not the entire system
     
-    # Set all necessary environment variables
+    # Set environment variables ONLY for this Notion instance
     export LIBGL_ALWAYS_SOFTWARE=1
     export ELECTRON_DISABLE_GPU=1
     export ELECTRON_NO_SANDBOX=1
+    
+    # Keep AMD driver settings for compatibility
     export MESA_LOADER_DRIVER_OVERRIDE=radeonsi
     export __GLX_VENDOR_LIBRARY_NAME=mesa
+    
+    # Unset any system GPU acceleration to ensure software rendering
+    unset LIBGL_DRI3_ENABLE
+    unset __GL_SYNC_TO_VBLANK
     
     # Try notion (our wrapper) first, fallback to notion-app-enhanced
     if command -v notion >/dev/null 2>&1; then
@@ -207,25 +219,24 @@
   
   home.file.".local/bin/notion-debug".executable = true;
 
-  # Environment variables for Electron apps (including Notion)
+  # Environment variables for better GPU support
+  # NOTE: GPU workarounds for Notion are now only applied to Notion itself,
+  # not system-wide, to preserve desktop performance
   home.sessionVariables = {
-    # Fix Electron apps on AMD GPUs
-    LIBVA_DRIVER_NAME = "radeonsi";
+    # NVIDIA GPU configuration is handled in gpu-acceleration.nix
+    # These are general Electron app settings
     
-    # Additional Mesa/OpenGL settings for AMD
-    MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
-    __GLX_VENDOR_LIBRARY_NAME = "mesa";
-    
-    # Electron app optimizations
+    # Enable hardware acceleration for Electron apps (except Notion)
     ELECTRON_IS_DEV = "0";
-    ELECTRON_ENABLE_LOGGING = "1";
     ELECTRON_TRASH = "gio";
     
     # Chrome/Electron flags for better compatibility
     CHROME_EXECUTABLE = "chromium";
     
-    # Disable GPU features that cause issues
-    ELECTRON_DISABLE_GPU = "1";
+    # Enable GPU acceleration for better desktop performance
+    # These will be overridden only for Notion via the wrapper script
+    LIBGL_DRI3_ENABLE = "1";
+    __GL_SYNC_TO_VBLANK = "1";
   };
 
   # ===== Media Application Settings =====

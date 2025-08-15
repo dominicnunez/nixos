@@ -30,6 +30,7 @@
       
       # Hardware
       ./modules/hardware/bluetooth.nix
+      ./modules/hardware/gpu-acceleration.nix  # AMD GPU hardware acceleration
       
       # Services
       ./modules/services/docker.nix
