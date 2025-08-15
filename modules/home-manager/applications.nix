@@ -24,7 +24,25 @@
     standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
-    notion-app-enhanced  # Note-taking (Linux-compatible version with enhancer)
+    
+    # Notion with custom wrapper for AMD GPU compatibility
+    # Using simplified flags to avoid internal errors
+    (pkgs.writeShellScriptBin "notion" ''
+      # Force software rendering to avoid AMD GPU issues
+      export LIBGL_ALWAYS_SOFTWARE=1
+      export ELECTRON_DISABLE_GPU=1
+      
+      # Launch notion-app-enhanced with minimal GPU workarounds
+      # Reduced flags to avoid "callback called more than once" errors
+      exec ${pkgs.notion-app-enhanced}/bin/notion-app-enhanced \
+        --no-sandbox \
+        --disable-gpu \
+        --use-gl=swiftshader \
+        "$@"
+    '')
+    
+    # Install notion-app-enhanced (only Linux-compatible Notion package)
+    notion-app-enhanced  # Notion with enhancer for Linux
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
@@ -48,7 +66,7 @@
     # Gaming packages moved to gaming.nix
 
     # ===== AI & Terminal Tools =====
-    gemini-cli  # Google Gemini AI agent for terminal
+    # gemini-cli  # Google Gemini AI agent for terminal - temporarily disabled due to hash mismatch
 
     # ===== Additional Tools =====
     gimp  # Image editor
@@ -84,13 +102,32 @@
   # Browser configurations moved to browsers.nix
 
   # ===== Notion Configuration =====
-  # Fix for Notion blank window issue on NixOS/Linux using notion-app-enhanced
-  home.file.".local/share/applications/notion-app-enhanced.desktop".text = ''
+  # Comprehensive fix for Notion blank window issue on NixOS/Linux
+  # Provides multiple solutions for AMD GPU compatibility issues
+  
+  # Desktop entry for standard Notion (using our wrapper)
+  home.file.".local/share/applications/notion-fixed.desktop".text = ''
     [Desktop Entry]
-    Name=Notion Enhanced
-    Comment=Write, plan, collaborate, and get organized (with enhancer)
+    Name=Notion (Fixed)
+    Comment=Write, plan, collaborate, and get organized (GPU workaround)
     GenericName=Productivity
-    Exec=notion-app-enhanced --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --disable-software-rasterizer --disable-features=VizDisplayCompositor %U
+    Exec=notion %U
+    Icon=notion-app-enhanced
+    Type=Application
+    StartupNotify=true
+    StartupWMClass=Notion
+    Categories=Office;
+    MimeType=x-scheme-handler/notion;
+    X-GNOME-SingleWindow=true
+  '';
+  
+  # Desktop entry for Notion Enhanced (alternate launcher)
+  home.file.".local/share/applications/notion-enhanced-fixed.desktop".text = ''
+    [Desktop Entry]
+    Name=Notion Enhanced (Direct)
+    Comment=Write, plan, collaborate, and get organized (direct launcher with simplified GPU fix)
+    GenericName=Productivity
+    Exec=env LIBGL_ALWAYS_SOFTWARE=1 ELECTRON_DISABLE_GPU=1 notion-app-enhanced --no-sandbox --disable-gpu --use-gl=swiftshader %U
     Icon=notion-app-enhanced
     Type=Application
     StartupNotify=true
@@ -100,17 +137,91 @@
     X-GNOME-SingleWindow=true
   '';
 
+  # Alternative direct launcher script
+  home.file.".local/bin/notion-launcher".text = ''
+    #!/usr/bin/env bash
+    # Direct launcher for Notion with comprehensive GPU workarounds
+    
+    # Set all necessary environment variables
+    export LIBGL_ALWAYS_SOFTWARE=1
+    export ELECTRON_DISABLE_GPU=1
+    export ELECTRON_NO_SANDBOX=1
+    export MESA_LOADER_DRIVER_OVERRIDE=radeonsi
+    export __GLX_VENDOR_LIBRARY_NAME=mesa
+    
+    # Try notion (our wrapper) first, fallback to notion-app-enhanced
+    if command -v notion >/dev/null 2>&1; then
+      exec notion "$@"
+    elif command -v notion-app-enhanced >/dev/null 2>&1; then
+      exec notion-app-enhanced \
+        --no-sandbox \
+        --disable-gpu \
+        --use-gl=swiftshader \
+        "$@"
+    else
+      echo "Error: No Notion installation found"
+      exit 1
+    fi
+  '';
+  
+  home.file.".local/bin/notion-launcher".executable = true;
+  
+  # Debug version of Notion launcher to test different configurations
+  home.file.".local/bin/notion-debug".text = ''
+    #!/usr/bin/env bash
+    echo "Notion Debug Launcher"
+    echo "====================="
+    echo "Testing different GPU configurations..."
+    echo ""
+    echo "Press 1 for software rendering (safest)"
+    echo "Press 2 for hardware acceleration (might cause blank screen)"
+    echo "Press 3 for hybrid mode"
+    read -n1 -p "Choice: " choice
+    echo ""
+    
+    case $choice in
+      1)
+        echo "Starting with software rendering..."
+        export LIBGL_ALWAYS_SOFTWARE=1
+        export ELECTRON_DISABLE_GPU=1
+        exec notion-app-enhanced --no-sandbox --disable-gpu --use-gl=swiftshader "$@"
+        ;;
+      2)
+        echo "Starting with hardware acceleration..."
+        exec notion-app-enhanced --no-sandbox "$@"
+        ;;
+      3)
+        echo "Starting with hybrid mode..."
+        exec notion-app-enhanced --no-sandbox --disable-gpu-compositing "$@"
+        ;;
+      *)
+        echo "Invalid choice"
+        exit 1
+        ;;
+    esac
+  '';
+  
+  home.file.".local/bin/notion-debug".executable = true;
+
   # Environment variables for Electron apps (including Notion)
   home.sessionVariables = {
     # Fix Electron apps on AMD GPUs
     LIBVA_DRIVER_NAME = "radeonsi";
     
+    # Additional Mesa/OpenGL settings for AMD
+    MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
+    __GLX_VENDOR_LIBRARY_NAME = "mesa";
+    
     # Electron app optimizations
     ELECTRON_IS_DEV = "0";
     ELECTRON_ENABLE_LOGGING = "1";
+    ELECTRON_TRASH = "gio";
     
     # Chrome/Electron flags for better compatibility
     CHROME_EXECUTABLE = "chromium";
+    
+    # Disable GPU features that cause issues
+    ELECTRON_DISABLE_GPU = "1";
   };
 
   # ===== Media Application Settings =====

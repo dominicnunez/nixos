@@ -388,8 +388,8 @@
     ruff
 
     # JavaScript/TypeScript Development
-    nodejs_22
-    nodePackages.npm
+    nodejs_22  # Comes with npm 10.9.2
+    # Note: npm 11.5.2 needs to be installed via: npm install -g npm@11.5.2
     nodePackages.pnpm
     # nodePackages.typescript  # Removed to avoid collision with gemini-cli
     # nodePackages.typescript-language-server  # Install via npm when needed
@@ -433,10 +433,41 @@
     # Python
     PYTHONDONTWRITEBYTECODE = "1";
     PYTHONUNBUFFERED = "1";
+    
+    # npm global directory for user-installed packages
+    NPM_CONFIG_PREFIX = "$HOME/.npm-global";
 
     # Update PATH for language tools
     PATH = "$PATH:$HOME/go/bin:$HOME/.cargo/bin:$HOME/.npm-global/bin:$HOME/.local/bin";
   };
+  
+  # Activation script to ensure npm 11.5.2 is installed
+  home.activation.npmUpgrade = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    # Create npm directories if they don't exist
+    mkdir -p $HOME/.npm-global
+    mkdir -p $HOME/.npm
+    
+    # Set proper npm cache directory
+    export npm_config_cache=$HOME/.npm
+    export NPM_CONFIG_PREFIX=$HOME/.npm-global
+    
+    # Check if npm 11.5.2 is already installed in .npm-global
+    if [ -f "$HOME/.npm-global/lib/node_modules/npm/package.json" ]; then
+      INSTALLED_VERSION=$(${pkgs.jq}/bin/jq -r '.version' $HOME/.npm-global/lib/node_modules/npm/package.json 2>/dev/null || echo "0.0.0")
+    else
+      INSTALLED_VERSION="0.0.0"
+    fi
+    
+    TARGET_NPM_VERSION="11.5.2"
+    
+    if [ "$INSTALLED_VERSION" != "$TARGET_NPM_VERSION" ]; then
+      echo "Installing npm version $TARGET_NPM_VERSION..."
+      ${pkgs.nodejs_22}/bin/npm install -g npm@$TARGET_NPM_VERSION --prefix=$HOME/.npm-global --cache=$HOME/.npm
+      echo "npm $TARGET_NPM_VERSION installed successfully"
+    else
+      echo "npm $TARGET_NPM_VERSION is already installed"
+    fi
+  '';
 
   # Shell aliases for development tools
   programs.bash.shellAliases = {
