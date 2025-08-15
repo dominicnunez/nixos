@@ -24,7 +24,7 @@
     standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
-    notion-app-enhanced  # Note-taking
+    notion-app  # Note-taking (replaced notion-app-enhanced for better stability)
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
@@ -82,6 +82,36 @@
   };
 
   # Browser configurations moved to browsers.nix
+
+  # ===== Notion Configuration =====
+  # Fix for Notion blank window issue on NixOS/Linux
+  home.file.".local/share/applications/notion-app.desktop".text = ''
+    [Desktop Entry]
+    Name=Notion
+    Comment=Write, plan, collaborate, and get organized
+    GenericName=Productivity
+    Exec=notion-app --no-sandbox --disable-gpu-sandbox --disable-dev-shm-usage --disable-software-rasterizer --disable-features=VizDisplayCompositor %U
+    Icon=notion-app
+    Type=Application
+    StartupNotify=true
+    StartupWMClass=Notion
+    Categories=Office;
+    MimeType=x-scheme-handler/notion;
+    X-GNOME-SingleWindow=true
+  '';
+
+  # Environment variables for Electron apps (including Notion)
+  home.sessionVariables = {
+    # Fix Electron apps on AMD GPUs
+    LIBVA_DRIVER_NAME = "radeonsi";
+    
+    # Electron app optimizations
+    ELECTRON_IS_DEV = "0";
+    ELECTRON_ENABLE_LOGGING = "1";
+    
+    # Chrome/Electron flags for better compatibility
+    CHROME_EXECUTABLE = "chromium";
+  };
 
   # ===== Media Application Settings =====
 

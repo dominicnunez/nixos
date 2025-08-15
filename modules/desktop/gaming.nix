@@ -56,6 +56,11 @@
         vulkan-loader
         vulkan-validation-layers
         vulkan-tools
+        
+        # VA-API support for video acceleration (needed for Electron apps like Notion)
+        libva
+        libva-utils
+        mesa
       ];
       
       # 32-bit support for games
