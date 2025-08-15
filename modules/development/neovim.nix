@@ -254,7 +254,7 @@
   environment.systemPackages = with pkgs; [
     # Language servers (for Neovim LSP)
     pyright                           # Python
-    nodePackages.typescript-language-server  # TypeScript/JavaScript
+    # nodePackages.typescript-language-server  # Install via npm to avoid collision with gemini-cli
     gopls                             # Go
     rust-analyzer                     # Rust
     jdt-language-server               # Java

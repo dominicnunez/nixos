@@ -249,7 +249,7 @@
     # Extra packages needed for LSP and functionality
     extraPackages = with pkgs; [
       # Language servers
-      nodePackages.typescript-language-server
+      # nodePackages.typescript-language-server  # Install via npm to avoid collision with gemini-cli
       nodePackages.vscode-langservers-extracted
       lua-language-server
       nil # Nix LSP

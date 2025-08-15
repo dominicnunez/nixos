@@ -7,9 +7,9 @@ pkgs.mkShell {
     # Frontend - Node.js ecosystem
     nodejs_22
     nodePackages.pnpm
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.prettier
+    # nodePackages.typescript  # Install via npm to avoid collision with gemini-cli
+    # nodePackages.typescript-language-server  # Install via npm when needed
+    # nodePackages.prettier  # Install via npm to avoid collision with gemini-cli
     nodePackages.eslint
     
     # Backend - Choose your stack

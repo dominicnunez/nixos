@@ -48,7 +48,7 @@
     # Gaming packages moved to gaming.nix
 
     # ===== AI & Terminal Tools =====
-    # gemini-cli  # Google Gemini AI agent for terminal - disabled due to typescript collision
+    gemini-cli  # Google Gemini AI agent for terminal
 
     # ===== Additional Tools =====
     gimp  # Image editor

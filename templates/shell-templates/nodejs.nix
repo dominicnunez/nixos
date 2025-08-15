@@ -14,10 +14,10 @@ pkgs.mkShell {
     # pnpm
     # bun
     
-    # Node development tools
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.prettier
+    # Node development tools  
+    # nodePackages.typescript  # Install via npm to avoid collision with gemini-cli
+    # nodePackages.typescript-language-server  # Install via npm when needed
+    # nodePackages.prettier  # Install via npm to avoid collision with gemini-cli
     nodePackages.eslint
     nodePackages.nodemon
     
@@ -47,6 +47,12 @@ pkgs.mkShell {
     echo "Node.js Development Environment"
     echo "Node $(node --version)"
     echo "npm $(npm --version)"
+    
+    # Install global development tools if not present
+    if ! command -v tsc &> /dev/null; then
+      echo "Installing TypeScript and related tools globally..."
+      npm install -g typescript typescript-language-server prettier
+    fi
     
     # Auto-install dependencies if package.json exists
     if [ -f package.json ] && [ ! -d node_modules ]; then

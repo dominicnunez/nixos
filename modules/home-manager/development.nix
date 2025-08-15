@@ -391,9 +391,10 @@
     nodejs_22
     nodePackages.npm
     nodePackages.pnpm
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.prettier
+    # nodePackages.typescript  # Removed to avoid collision with gemini-cli
+    # nodePackages.typescript-language-server  # Install via npm when needed
+    # nodePackages.prettier  # Removed to avoid collision with gemini-cli
+    # Note: Install TypeScript/Prettier tools via npm globally: npm install -g typescript typescript-language-server prettier
 
     # Rust Development
     rustc
