@@ -225,7 +225,7 @@
     # arch
 
     ### Display the frametime line graph
-    # frame_timing
+    frame_timing=0
     # frame_timing_detailed
     # dynamic_frame_timing
     # histogram
