@@ -71,7 +71,7 @@
     # fps_limit_method=
 
     ### VSync [0-3] 0 = adaptive; 1 = off; 2 = mailbox; 3 = on
-    vsync=0
+    #vsync=-1
 
     ### OpenGL VSync [0-N] 0 = off; >=1 = wait for N v-blanks, N > 1 acts as a FPS limiter (FPS = display refresh rate / N)
     # gl_vsync=-2
