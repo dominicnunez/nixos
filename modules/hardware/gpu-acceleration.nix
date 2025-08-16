@@ -5,14 +5,17 @@
   # Enable NVIDIA proprietary drivers
   services.xserver.videoDrivers = [ "nvidia" ];
   
+  # Force load NVIDIA kernel modules at boot
+  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  
   # NVIDIA driver configuration
   hardware.nvidia = {
     # Modesetting is required for most Wayland compositors
     modesetting.enable = true;
     
     # Use the open source kernel module (only for newer GPUs)
-    # RTX 4080 Super supports this
-    open = false;  # Set to true if you want to try the open kernel module
+    # RTX 4080 Super supports this but it has Vulkan issues
+    open = false;  # Keep false for better compatibility with Steam/Proton
     
     # Enable the nvidia settings GUI
     nvidiaSettings = true;
@@ -46,12 +49,11 @@
         spirv-tools
         
         # NVIDIA Vulkan ICD - CRITICAL for Steam/Proton
-        # The NVIDIA driver is already included via services.xserver.videoDrivers
+        nvidia-vaapi-driver  # NVIDIA VA-API driver
         
         # Video acceleration APIs
         libva
         libva-utils
-        nvidia-vaapi-driver  # NVIDIA VA-API driver
         vaapiVdpau
         libvdpau
         
@@ -97,9 +99,12 @@
     LIBVA_DRIVER_NAME = "nvidia";
     
     # Vulkan configuration - CRITICAL FOR POE2
-    # Explicitly set NVIDIA Vulkan ICD
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    # Let the system auto-detect Vulkan ICDs for better compatibility
+    # VK_ICD_FILENAMES is set automatically by NixOS
     VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/implicit_layer.d:/run/opengl-driver/share/vulkan/explicit_layer.d";
+    
+    # Force NVIDIA driver selection
+    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     
     # Wine/Proton DirectX compatibility (fixes createdxgifactor1 error)
     PROTON_ENABLE_NVAPI = "1";      # Enable NVIDIA API support in Proton
@@ -141,8 +146,6 @@
   
   # Kernel modules for NVIDIA GPU
   boot = {
-    # Load NVIDIA modules early
-    initrd.kernelModules = [ ];
     kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     
     # Kernel parameters for NVIDIA GPU optimization

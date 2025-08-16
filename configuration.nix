@@ -27,6 +27,7 @@
       ./modules/desktop/applications.nix
       ./modules/desktop/fonts-themes.nix
       ./modules/desktop/gaming.nix
+      ./modules/desktop/steam-vulkan-fix.nix  # Fix for Steam Vulkan/DirectX issues
       
       # Hardware
       ./modules/hardware/bluetooth.nix

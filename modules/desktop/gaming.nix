@@ -217,16 +217,13 @@
     PROTON_NO_FSYNC = "0";     # Enable FSYNC if kernel supports it
     
     # DirectX factory fixes - CRITICAL FOR POE2
-    DXVK_HUD = "compiler";     # Show DXVK compiler activity (can be disabled later)
-    DXVK_CONFIG_FILE = "";     # Don't use config file
     DXVK_STATE_CACHE_PATH = "$HOME/.cache/dxvk"; # DXVK cache location
     
     # Wine prefix configuration
     WINEPREFIX = "$HOME/.wine";  # Default Wine prefix location
     WINEARCH = "win64";          # Use 64-bit Wine architecture
     
-    # Additional DirectX factory error fixes
-    # VK_LAYER_PATH is set in gpu-acceleration.nix
+    # Shader cache settings
     __GL_SHADER_DISK_CACHE = "1";      # Enable shader disk cache
     __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nvidia/GLCache"; # NVIDIA shader cache path
   };
