@@ -199,7 +199,7 @@
     # fps_value=30,60
     # fps_color=B22222,FDFD09,39F900
     # fps_text=""
-    frametime
+    # frametime
     # frame_count
     ## fps_metrics takes a list of decimal values or the value avg
     fps_metrics=avg,0.01
