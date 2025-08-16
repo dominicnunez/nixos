@@ -33,6 +33,11 @@
     vkd3d              # Direct3D 12 to Vulkan translation
     vkd3d-proton       # Proton's fork of VKD3D
     
+    # Additional DirectX/Graphics libraries for PoE2 fix
+    mesa-demos         # OpenGL/Mesa demos and tools
+    vulkan-caps-viewer # Check Vulkan capabilities
+    renderdoc          # Graphics debugger
+    
     # Additional Wine/Proton dependencies for PoE2
     cabextract         # Extract Windows cabinet files
     p7zip              # Archive support
@@ -63,6 +68,9 @@
     sqlite             # Database support
     libxml2            # XML parsing
     libxslt            # XSLT support
+    libkrb5            # Kerberos support
+    pkgsi686Linux.gnutls  # 32-bit TLS support
+    samba              # SMB/CIFS support (some games need this)
     
     # Audio libraries
     alsa-lib
@@ -93,6 +101,7 @@
         vulkan-extension-layer  # Additional Vulkan extensions
         vulkan-headers         # Vulkan headers for compatibility
         spirv-tools           # SPIR-V tools for shader compilation
+        spirv-cross          # SPIR-V cross compiler
         
         # VA-API support for video acceleration
         libva
@@ -207,12 +216,19 @@
     PROTON_NO_ESYNC = "0";     # Enable ESYNC for better performance
     PROTON_NO_FSYNC = "0";     # Enable FSYNC if kernel supports it
     
-    # DirectX factory fixes
+    # DirectX factory fixes - CRITICAL FOR POE2
     DXVK_HUD = "compiler";     # Show DXVK compiler activity (can be disabled later)
+    DXVK_CONFIG_FILE = "";     # Don't use config file
+    DXVK_STATE_CACHE_PATH = "$HOME/.cache/dxvk"; # DXVK cache location
     
     # Wine prefix configuration
     WINEPREFIX = "$HOME/.wine";  # Default Wine prefix location
     WINEARCH = "win64";          # Use 64-bit Wine architecture
+    
+    # Additional DirectX factory error fixes
+    # VK_LAYER_PATH is set in gpu-acceleration.nix
+    __GL_SHADER_DISK_CACHE = "1";      # Enable shader disk cache
+    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nvidia/GLCache"; # NVIDIA shader cache path
   };
   
   # Kernel configuration for ESYNC/FSYNC support
@@ -240,21 +256,116 @@
     }
   ];
   
-  # Create a helper script for Path of Exile 2 launch options
+  # Create helper scripts for Path of Exile 2
   environment.etc."poe2-launch-options.txt" = {
     text = ''
       # Path of Exile 2 Steam Launch Options
       # Copy this line to Steam -> Path of Exile 2 -> Properties -> Launch Options:
       
-      PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+      PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 WINE_FULLSCREEN_FSR=1 gamemoderun %command% --nologo --waitforpreload
       
-      # Alternative with more debugging (if still having issues):
-      # PROTON_LOG=1 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 DXVK_HUD=devinfo,fps VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+      # Alternative for DirectX factory error fix (USE THIS IF ERROR PERSISTS):
+      PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11
       
-      # For Proton GE (if using protonup-qt):
-      # Make sure to select Proton GE in Steam's compatibility settings
-      # Recommended: GE-Proton9-20 or newer
+      # Debug mode (if still having issues):
+      # PROTON_LOG=1 DXVK_LOG_LEVEL=info PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 DXVK_HUD=devinfo,fps,version,api VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+      
+      # For Proton GE (recommended for PoE2):
+      # 1. Use protonup-qt to install GE-Proton9-20 or newer
+      # 2. In Steam, right-click PoE2 -> Properties -> Compatibility
+      # 3. Force compatibility tool: GE-Proton9-20
+      # 4. Use the launch options above
+      
+      # IMPORTANT: If you get createdxgifactor1 error:
+      # 1. Delete the game's shader cache: rm -rf ~/.steam/steam/steamapps/shadercache/2694490/
+      # 2. Delete DXVK cache: rm -rf ~/.cache/dxvk/
+      # 3. Verify game files in Steam
+      # 4. Try adding -dx11 or -vulkan to the launch options
     '';
     mode = "0644";
+  };
+  
+  # Create a PoE2 fix script
+  environment.etc."poe2-fix.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+      echo "========================================"
+      echo "Path of Exile 2 DirectX Fix Script"
+      echo "========================================"
+      echo ""
+      
+      # Check for NVIDIA GPU
+      if lspci | grep -i nvidia > /dev/null; then
+        echo "✓ NVIDIA GPU detected"
+      else
+        echo "⚠ Warning: No NVIDIA GPU detected. This script is optimized for NVIDIA."
+      fi
+      
+      # Check Vulkan support
+      echo ""
+      echo "Checking Vulkan support..."
+      if command -v vulkaninfo &> /dev/null; then
+        if vulkaninfo --summary 2>/dev/null | grep -q "NVIDIA"; then
+          echo "✓ NVIDIA Vulkan driver is available"
+        else
+          echo "⚠ NVIDIA Vulkan driver not detected!"
+        fi
+      fi
+      
+      # Clear shader caches
+      echo ""
+      echo "Clearing shader caches..."
+      rm -rf ~/.steam/steam/steamapps/shadercache/2694490/ 2>/dev/null
+      rm -rf ~/.cache/dxvk/ 2>/dev/null
+      rm -rf ~/.cache/nvidia/GLCache/ 2>/dev/null
+      rm -rf ~/.steam/steam/steamapps/compatdata/2694490/pfx/drive_c/users/*/AppData/Local/Path\ of\ Exile\ 2/DirectXCache/ 2>/dev/null
+      echo "✓ Shader caches cleared"
+      
+      # Create necessary directories
+      mkdir -p ~/.cache/dxvk
+      mkdir -p ~/.cache/nvidia/GLCache
+      echo "✓ Cache directories created"
+      
+      # Set up Wine prefix if needed
+      export WINEPREFIX="$HOME/.steam/steam/steamapps/compatdata/2694490/pfx"
+      if [ -d "$WINEPREFIX" ]; then
+        echo ""
+        echo "Setting up DirectX components in Wine prefix..."
+        echo "(This may take a moment)"
+        
+        # Install DirectX dependencies
+        WINEPREFIX="$WINEPREFIX" winetricks -q d3dx9 d3dcompiler_43 d3dcompiler_47 d3dx11_43 2>/dev/null
+        
+        # Set Windows version to Windows 10
+        WINEPREFIX="$WINEPREFIX" winecfg -v win10 2>/dev/null
+        
+        echo "✓ DirectX components installed"
+      else
+        echo ""
+        echo "⚠ PoE2 Wine prefix not found. Please run the game once first."
+      fi
+      
+      echo ""
+      echo "========================================"
+      echo "Fix applied successfully!"
+      echo "========================================"
+      echo ""
+      echo "Next steps:"
+      echo "1. Open Steam"
+      echo "2. Right-click Path of Exile 2 → Properties → Installed Files"
+      echo "3. Click 'Verify integrity of game files'"
+      echo "4. Go to Properties → Compatibility"
+      echo "5. Enable 'Force the use of a specific Steam Play compatibility tool'"
+      echo "6. Select 'Proton GE' (install via protonup-qt if not available)"
+      echo "7. Go to Properties → General → Launch Options"
+      echo "8. Add this (all one line):"
+      echo ""
+      echo "PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11"
+      echo ""
+      echo "9. If the error persists, try adding -vulkan instead of -dx11"
+      echo ""
+      echo "For more options, see: /etc/poe2-launch-options.txt"
+    '';
+    mode = "0755";
   };
 }

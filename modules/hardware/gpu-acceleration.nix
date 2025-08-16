@@ -96,8 +96,10 @@
     VDPAU_DRIVER = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
     
-    # Vulkan configuration - Let the system auto-detect
-    # VK_ICD_FILENAMES is set automatically by NixOS
+    # Vulkan configuration - CRITICAL FOR POE2
+    # Explicitly set NVIDIA Vulkan ICD
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/implicit_layer.d:/run/opengl-driver/share/vulkan/explicit_layer.d";
     
     # Wine/Proton DirectX compatibility (fixes createdxgifactor1 error)
     PROTON_ENABLE_NVAPI = "1";      # Enable NVIDIA API support in Proton
@@ -113,9 +115,13 @@
     WINE_CPU_TOPOLOGY = "4:2";      # Optimize Wine CPU topology
     __NV_PRIME_RENDER_OFFLOAD = "1"; # Enable PRIME render offload
     
-    # DirectX factory fix for Path of Exile 2
-    WINEDLLOVERRIDES = "d3d12=n,b;dxgi=n,b"; # Native then builtin for D3D12/DXGI
+    # DirectX factory fix for Path of Exile 2 - CRITICAL
+    WINEDLLOVERRIDES = "d3d11=n;d3d10core=n;d3d10_1=n;d3d10=n;dxgi=n;d3d9=n"; # Force native DirectX
     WINE_LARGE_ADDRESS_AWARE = "1";  # Enable large address awareness
+    
+    # Additional DirectX factory error prevention
+    WINE_VULKAN_NEGATIVE_MIP_BIAS = "1"; # Fix texture issues
+    DVK_FILTER_DEVICE_NAME = "NVIDIA";   # Force NVIDIA device selection
     
     # Enable vsync to prevent tearing
     __GL_SYNC_TO_VBLANK = "1";
