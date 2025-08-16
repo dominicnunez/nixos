@@ -59,6 +59,9 @@
       # AI CLI shortcuts
       gm = "gemini";
       
+      # Applications with GPU fixes
+      notion = "env LIBGL_ALWAYS_SOFTWARE=1 notion-app-enhanced --no-sandbox --disable-gpu";
+      
       # NixOS specific
       rebuild = "sudo nixos-rebuild switch --flake /home/aural/Code/nixos";
       rebuild-test = "sudo nixos-rebuild test --flake /home/aural/Code/nixos";
