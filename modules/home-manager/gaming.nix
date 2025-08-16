@@ -71,7 +71,7 @@
     # fps_limit_method=
 
     ### VSync [0-3] 0 = adaptive; 1 = off; 2 = mailbox; 3 = on
-    # vsync=-1
+    vsync=0
 
     ### OpenGL VSync [0-N] 0 = off; >=1 = wait for N v-blanks, N > 1 acts as a FPS limiter (FPS = display refresh rate / N)
     # gl_vsync=-2
@@ -132,12 +132,12 @@
     ### Display the current GPU information
     ## Note: gpu_mem_clock and gpu_mem_temp also need "vram" to be enabled
     gpu_stats
-    # gpu_temp
+    gpu_temp
     # gpu_junction_temp
-    # gpu_core_clock
+    gpu_core_clock
     # gpu_mem_temp
-    # gpu_mem_clock
-    # gpu_power
+    gpu_mem_clock
+    gpu_power
     # gpu_power_limit
     # gpu_text=
     # gpu_load_change
@@ -153,7 +153,7 @@
 
     ### Display the current CPU information
     cpu_stats
-    # cpu_temp
+    cpu_temp
     # cpu_power
     # cpu_text=
     # cpu_mhz
@@ -173,8 +173,8 @@
     # io_write
 
     ### Display system vram / ram / swap space usage
-    # vram
-    # ram
+    vram
+    ram
     # swap
 
     ### Display per process memory usage
@@ -224,7 +224,7 @@
     # arch
 
     ### Display the frametime line graph
-    frame_timing
+    # frame_timing
     # frame_timing_detailed
     # dynamic_frame_timing
     # histogram
