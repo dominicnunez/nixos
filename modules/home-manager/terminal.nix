@@ -59,8 +59,13 @@
       # AI CLI shortcuts
       gm = "gemini";
       
-      # Applications with GPU fixes
-      notion = "env LIBGL_ALWAYS_SOFTWARE=1 notion-app-enhanced --no-sandbox --disable-gpu";
+      # Applications with GPU fixes (multiple options for Notion)
+      # The 'notion' command now auto-tries different GPU methods (installed via wrapper)
+      # Direct alternatives if auto-detection fails:
+      notion-desktop = "notion-app-enhanced --use-gl=desktop";  # Best performance
+      notion-angle = "notion-app-enhanced --use-gl=angle";      # Alternative GL
+      notion-software = "notion-app-enhanced --disable-gpu";     # Software rendering
+      notion-debug = "notion-app-enhanced --enable-logging --v=1";  # Debug mode
       
       # NixOS specific
       rebuild = "sudo nixos-rebuild switch --flake /home/aural/Code/nixos";

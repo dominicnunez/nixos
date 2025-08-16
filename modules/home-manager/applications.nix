@@ -29,8 +29,17 @@
     libreoffice-fresh  # Office suite
     # logseq  # Alternative knowledge base
     
-    # Notion desktop app
-    notion-app-enhanced
+    # Notion wrapper using Chromium in app mode (avoids Electron issues)
+    (pkgs.writeShellScriptBin "notion" ''
+      exec ${pkgs.chromium}/bin/chromium \
+        --app="https://www.notion.so" \
+        --class="notion" \
+        --user-data-dir="$HOME/.config/notion-chromium" \
+        --enable-features=UseOzonePlatform,VaapiVideoDecoder \
+        --ozone-platform=x11 \
+        --use-gl=egl \
+        "$@"
+    '')
     # zettlr  # Markdown editor
 
     # ===== Development IDEs =====
@@ -87,6 +96,19 @@
     # - User preferences for extension versions
   };
 
+  # Desktop entry for Notion
+  xdg.desktopEntries.notion = {
+    name = "Notion";
+    comment = "The AI workspace that works for you";
+    exec = "notion";
+    icon = "notion";
+    terminal = false;
+    type = "Application";
+    categories = [ "Office" "Network" "WebBrowser" ];
+    mimeType = [ "x-scheme-handler/notion" ];
+    startupNotify = true;
+  };
+
   # Browser configurations moved to browsers.nix
 
   # Environment variables for better Electron app support
@@ -104,6 +126,12 @@
     # Enable GPU acceleration for better desktop performance
     LIBGL_DRI3_ENABLE = "1";
     __GL_SYNC_TO_VBLANK = "1";
+    
+    # Electron/Chrome GPU settings for NVIDIA compatibility
+    # These help prevent blank screens in Electron apps
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";  # Auto-detect best platform
+    DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";  # Prevent GPU switching issues
+    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";  # Keep shader cache for performance
   };
 
   # ===== Media Application Settings =====
