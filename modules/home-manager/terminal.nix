@@ -1,78 +1,17 @@
 # modules/home-manager/terminal.nix - Terminal and shell configurations
 { config, pkgs, lib, ... }:
 
+let
+  # Import aliases from dedicated file
+  aliases = import ./aliases.nix { inherit config pkgs lib; };
+in
 {
   # Enhanced Bash configuration
   programs.bash = {
     enable = true;
     
-    # Shell aliases from productivity.nix
-    shellAliases = {
-      # Navigation
-      ll = "eza -l";
-      la = "eza -la";
-      lt = "eza --tree";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "....." = "cd ../../../..";
-      
-      # Node.js
-      nvm = "fnm";  # Alias for compatibility with projects expecting nvm
-      
-      # Git shortcuts
-      gs = "git status";
-      gc = "git commit";
-      gp = "git push";
-      gl = "git pull";
-      gd = "git diff";
-      ga = "git add";
-      gco = "git checkout";
-      gb = "git branch";
-      
-      # Modern CLI replacements
-      cat = "bat";
-      find = "fd";
-      grep = "rg";
-      ps = "procs";
-      top = "btop";
-      df = "duf";
-      du = "dust";
-      ping = "gping";
-      
-      # Productivity aliases from productivity.nix
-      cd = "z";       # Use zoxide instead of cd
-      cdi = "zi";     # Interactive directory jump
-      lg = "lazygit";
-      g = "git";
-      c = "claude";
-      
-      # System shortcuts
-      cls = "clear";
-      mkdir = "mkdir -pv";
-      cp = "cp -iv";
-      mv = "mv -iv";
-      rm = "rm -iv";
-      
-      # Claude Code utilities
-      cctkn = "python /home/aural/.claude/token_usage_report.py";
-      
-      # AI CLI shortcuts
-      gm = "gemini";
-      
-      # Applications with GPU fixes (multiple options for Notion)
-      # The 'notion' command now auto-tries different GPU methods (installed via wrapper)
-      # Direct alternatives if auto-detection fails:
-      notion-desktop = "notion-app-enhanced --use-gl=desktop";  # Best performance
-      notion-angle = "notion-app-enhanced --use-gl=angle";      # Alternative GL
-      notion-software = "notion-app-enhanced --disable-gpu";     # Software rendering
-      notion-debug = "notion-app-enhanced --enable-logging --v=1";  # Debug mode
-      
-      # NixOS specific
-      rebuild = "sudo nixos-rebuild switch --flake /home/aural/Code/nixos";
-      rebuild-test = "sudo nixos-rebuild test --flake /home/aural/Code/nixos";
-      nix-clean = "sudo nix-collect-garbage -d";
-      nix-search = "nix search nixpkgs";
-    };
+    # Use imported aliases
+    shellAliases = aliases.shellAliases;
     
     # Bash-specific settings
     initExtra = ''
@@ -117,17 +56,8 @@
   programs.fish = {
     enable = false;  # Set to true if you want to use fish
     
-    shellAliases = {
-      # Same aliases as bash
-      ll = "eza -l";
-      la = "eza -la";
-      lt = "eza --tree";
-      cd = "z";
-      cdi = "zi";
-      lg = "lazygit";
-      g = "git";
-      c = "claude";
-    };
+    # Use imported aliases
+    shellAliases = aliases.shellAliases;
     
     interactiveShellInit = ''
       # Fish-specific configuration
@@ -142,17 +72,8 @@
   programs.zsh = {
     enable = false;  # Set to true if you want to use zsh
     
-    shellAliases = {
-      # Same aliases as bash
-      ll = "eza -l";
-      la = "eza -la";
-      lt = "eza --tree";
-      cd = "z";
-      cdi = "zi";
-      lg = "lazygit";
-      g = "git";
-      c = "claude";
-    };
+    # Use imported aliases
+    shellAliases = aliases.shellAliases;
     
     initExtra = ''
       # Enable vi mode
