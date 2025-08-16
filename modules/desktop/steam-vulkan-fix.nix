@@ -69,30 +69,28 @@
   };
   
   # System-wide Vulkan configuration
-  environment.variables = {
-    # Vulkan driver selection
-    VK_ICD_FILENAMES = lib.mkForce 
-      "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-    
-    # 32-bit Vulkan support
-    VK_ICD_FILENAMES_i686 = 
-      "/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json";
-    
-    # Disable other Vulkan drivers to prevent conflicts
-    __EGL_VENDOR_LIBRARY_FILENAMES = 
-      "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
-    
-    # OpenGL configuration
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    
-    # Force NVIDIA GPU for all applications
-    __NV_PRIME_RENDER_OFFLOAD = "1";
-    __VK_LAYER_NV_optimus = "NVIDIA_only";
-    
-    # LibDRM fix for the warnings
-    LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
-    LIBGL_DRIVERS_PATH_32 = "/run/opengl-driver-32/lib/dri";
-  };
+  environment.variables = lib.mkMerge [
+    {
+      # Vulkan driver selection - use mkForce to override
+      VK_ICD_FILENAMES = lib.mkForce 
+        "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+      
+      # 32-bit Vulkan support
+      VK_ICD_FILENAMES_i686 = 
+        "/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json";
+      
+      # Disable other Vulkan drivers to prevent conflicts
+      __EGL_VENDOR_LIBRARY_FILENAMES = 
+        "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
+      
+      # Vulkan layer for optimizations
+      __VK_LAYER_NV_optimus = "NVIDIA_only";
+      
+      # LibDRM fix for the warnings
+      LIBGL_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
+      LIBGL_DRIVERS_PATH_32 = "/run/opengl-driver-32/lib/dri";
+    }
+  ];
   
   # Create a Steam wrapper script that ensures GPU is enabled
   environment.etc."steam-gpu-fix.sh" = {
@@ -136,8 +134,8 @@
     '';
   };
   
-  # Ensure NVIDIA kernel modules are loaded
-  boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  # Kernel modules are already handled in gpu-acceleration.nix
+  # boot.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   
   # Add udev rules for NVIDIA GPU
   services.udev.extraRules = ''
@@ -162,23 +160,22 @@
     };
   };
   
-  # Add Vulkan validation layers for debugging
+  # Add debugging tools (avoiding duplicates from gaming.nix and gpu-acceleration.nix)
   environment.systemPackages = with pkgs; [
-    vulkan-validation-layers
-    vulkan-tools
-    vulkan-loader
-    vulkan-headers
-    vulkan-extension-layer
-    
-    # Tools for debugging GPU issues
+    # GPU monitoring tool specific to this module
     nvidia-system-monitor-qt
-    nvtopPackages.nvidia
-    glxinfo
-    glmark2
     
-    # Additional Steam/Proton dependencies
-    mangohud
-    gamemode
-    gamescope
+    # These are already in gaming.nix, so we don't duplicate them:
+    # vulkan-validation-layers
+    # vulkan-tools
+    # vulkan-loader
+    # vulkan-headers
+    # vulkan-extension-layer
+    # nvtopPackages.nvidia
+    # glxinfo
+    # glmark2
+    # mangohud
+    # gamemode
+    # gamescope
   ];
 }

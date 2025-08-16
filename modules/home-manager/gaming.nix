@@ -254,8 +254,9 @@
     WINEPREFIX = "$HOME/.wine";
     WINEARCH = "win64";
     
-    # Vulkan
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+    # Vulkan - Using NVIDIA driver
+    # Note: This is overridden by steam-vulkan-fix.nix for NVIDIA GPU
+    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     
     # Gaming performance
     GAMEMODE = "1";
