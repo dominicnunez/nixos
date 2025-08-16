@@ -23,14 +23,21 @@
     heroic             # Epic Games & GOG launcher
     bottles            # Wine prefix manager
     
-    # Wine for Windows games
-    wineWowPackages.staging  # Use staging for better compatibility
+    # Wine for Windows games - Full package for maximum compatibility
+    wineWowPackages.stagingFull  # Full staging with all features
     winetricks
     
     # DirectX and DXVK support (critical for PoE2)
     dxvk               # DirectX to Vulkan translation layer
+    dxvk_2            # DXVK 2.x for newer DirectX support
     vkd3d              # Direct3D 12 to Vulkan translation
     vkd3d-proton       # Proton's fork of VKD3D
+    
+    # Additional Wine/Proton dependencies for PoE2
+    cabextract         # Extract Windows cabinet files
+    p7zip              # Archive support
+    unzip              # ZIP support
+    zenity             # GUI dialogs for Wine
     
     # Performance tools
     mangohud           # Performance overlay
@@ -48,6 +55,27 @@
     # Utilities
     goverlay           # GUI for MangoHud settings
     r2modman           # Mod manager for Unity games
+    
+    # System libraries that Wine/Proton might need
+    gnutls             # TLS support
+    openldap           # LDAP support
+    libgpg-error       # GPG error handling
+    sqlite             # Database support
+    libxml2            # XML parsing
+    libxslt            # XSLT support
+    
+    # Audio libraries
+    alsa-lib
+    alsa-plugins
+    
+    # Graphics libraries
+    freetype
+    fontconfig
+    lcms2              # Color management
+    
+    # Compression libraries
+    bzip2
+    zlib
   ];
 
   # Hardware support for gaming and desktop acceleration
@@ -63,6 +91,8 @@
         vulkan-validation-layers
         vulkan-tools
         vulkan-extension-layer  # Additional Vulkan extensions
+        vulkan-headers         # Vulkan headers for compatibility
+        spirv-tools           # SPIR-V tools for shader compilation
         
         # VA-API support for video acceleration
         libva
@@ -77,6 +107,10 @@
         # Additional video acceleration
         vaapiVdpau
         libvdpau-va-gl
+        
+        # Additional libraries for Wine/Proton compatibility
+        ocl-icd           # OpenCL support
+        libglvnd          # GL Vendor-Neutral Dispatch library
       ];
       
       # 32-bit support for games
@@ -84,8 +118,16 @@
         libva
         mesa
         # mesa.drivers is deprecated, mesa includes drivers now
-        vulkan-loader  # 32-bit Vulkan loader for compatibility
-        dxvk           # 32-bit DXVK support
+        vulkan-loader     # 32-bit Vulkan loader for compatibility
+        vulkan-tools      # 32-bit Vulkan tools
+        dxvk             # 32-bit DXVK support
+        vkd3d            # 32-bit VKD3D support
+        vkd3d-proton     # 32-bit VKD3D-Proton
+        libglvnd         # 32-bit GL dispatch
+        pipewire         # 32-bit audio support
+        libpulseaudio    # 32-bit PulseAudio
+        openal           # 32-bit OpenAL audio
+        ocl-icd          # 32-bit OpenCL
       ];
     };
     
@@ -154,4 +196,65 @@
     corefonts          # Microsoft Core Fonts
     vistafonts         # Windows Vista fonts
   ];
+  
+  # System-level Wine/Proton configuration for Path of Exile 2
+  environment.variables = {
+    # Steam runtime configuration
+    STEAM_RUNTIME_PREFER_HOST_LIBRARIES = "0";  # Use Steam runtime libs
+    STEAM_RUNTIME = "1";                        # Enable Steam runtime
+    
+    # Path of Exile 2 specific fixes
+    PROTON_NO_ESYNC = "0";     # Enable ESYNC for better performance
+    PROTON_NO_FSYNC = "0";     # Enable FSYNC if kernel supports it
+    
+    # DirectX factory fixes
+    DXVK_HUD = "compiler";     # Show DXVK compiler activity (can be disabled later)
+    
+    # Wine prefix configuration
+    WINEPREFIX = "$HOME/.wine";  # Default Wine prefix location
+    WINEARCH = "win64";          # Use 64-bit Wine architecture
+  };
+  
+  # Kernel configuration for ESYNC/FSYNC support
+  boot.kernel.sysctl = {
+    # Increase the limit for ESYNC
+    "vm.max_map_count" = 2147483642;
+    
+    # Increase file descriptor limits for ESYNC
+    "fs.file-max" = 524288;
+  };
+  
+  # Security limits for gaming
+  security.pam.loginLimits = [
+    {
+      domain = "@users";
+      type = "soft";
+      item = "nofile";
+      value = "524288";
+    }
+    {
+      domain = "@users";
+      type = "hard";
+      item = "nofile";
+      value = "524288";
+    }
+  ];
+  
+  # Create a helper script for Path of Exile 2 launch options
+  environment.etc."poe2-launch-options.txt" = {
+    text = ''
+      # Path of Exile 2 Steam Launch Options
+      # Copy this line to Steam -> Path of Exile 2 -> Properties -> Launch Options:
+      
+      PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+      
+      # Alternative with more debugging (if still having issues):
+      # PROTON_LOG=1 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 DXVK_HUD=devinfo,fps VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+      
+      # For Proton GE (if using protonup-qt):
+      # Make sure to select Proton GE in Steam's compatibility settings
+      # Recommended: GE-Proton9-20 or newer
+    '';
+    mode = "0644";
+  };
 }

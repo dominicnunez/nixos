@@ -41,6 +41,9 @@
         vulkan-loader
         vulkan-validation-layers
         vulkan-tools
+        vulkan-headers
+        vulkan-extension-layer
+        spirv-tools
         
         # NVIDIA Vulkan ICD - CRITICAL for Steam/Proton
         # The NVIDIA driver is already included via services.xserver.videoDrivers
@@ -52,6 +55,10 @@
         vaapiVdpau
         libvdpau
         
+        # DirectX compatibility libraries
+        libglvnd           # GL dispatch library
+        ocl-icd           # OpenCL ICD loader
+        
         # Additional tools
         libdrm
         glxinfo
@@ -62,6 +69,12 @@
         mesa
         libva
         libvdpau
+        vulkan-loader
+        vulkan-validation-layers
+        libglvnd
+        ocl-icd
+        pipewire
+        libpulseaudio
         # NVIDIA 32-bit support is handled automatically
       ];
     };
@@ -89,10 +102,20 @@
     # Wine/Proton DirectX compatibility (fixes createdxgifactor1 error)
     PROTON_ENABLE_NVAPI = "1";      # Enable NVIDIA API support in Proton
     PROTON_HIDE_NVIDIA_GPU = "0";   # Don't hide NVIDIA GPU from games
+    PROTON_ENABLE_NGX_UPDATER = "1"; # Enable NVIDIA NGX updater
+    PROTON_USE_WINED3D = "0";       # Use DXVK instead of WineD3D
     DXVK_ASYNC = "1";               # Enable async shader compilation
-    VKD3D_CONFIG = "dxr11,dxr";     # Enable DirectX Raytracing support
+    DXVK_STATE_CACHE = "1";         # Enable DXVK state cache
+    DXVK_LOG_LEVEL = "none";        # Reduce log spam
+    VKD3D_CONFIG = "dxr,dxr11";     # Enable DirectX Raytracing support
+    VKD3D_DEBUG = "none";           # Disable VKD3D debug messages
+    VKD3D_SHADER_MODEL = "6_6";     # Use latest shader model
     WINE_CPU_TOPOLOGY = "4:2";      # Optimize Wine CPU topology
     __NV_PRIME_RENDER_OFFLOAD = "1"; # Enable PRIME render offload
+    
+    # DirectX factory fix for Path of Exile 2
+    WINEDLLOVERRIDES = "d3d12=n,b;dxgi=n,b"; # Native then builtin for D3D12/DXGI
+    WINE_LARGE_ADDRESS_AWARE = "1";  # Enable large address awareness
     
     # Enable vsync to prevent tearing
     __GL_SYNC_TO_VBLANK = "1";
