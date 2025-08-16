@@ -42,6 +42,9 @@
         vulkan-validation-layers
         vulkan-tools
         
+        # NVIDIA Vulkan ICD - CRITICAL for Steam/Proton
+        # The NVIDIA driver is already included via services.xserver.videoDrivers
+        
         # Video acceleration APIs
         libva
         libva-utils
@@ -59,6 +62,7 @@
         mesa
         libva
         libvdpau
+        # NVIDIA 32-bit support is handled automatically
       ];
     };
     
@@ -79,8 +83,16 @@
     VDPAU_DRIVER = "nvidia";
     LIBVA_DRIVER_NAME = "nvidia";
     
-    # Vulkan configuration
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    # Vulkan configuration - Let the system auto-detect
+    # VK_ICD_FILENAMES is set automatically by NixOS
+    
+    # Wine/Proton DirectX compatibility (fixes createdxgifactor1 error)
+    PROTON_ENABLE_NVAPI = "1";      # Enable NVIDIA API support in Proton
+    PROTON_HIDE_NVIDIA_GPU = "0";   # Don't hide NVIDIA GPU from games
+    DXVK_ASYNC = "1";               # Enable async shader compilation
+    VKD3D_CONFIG = "dxr11,dxr";     # Enable DirectX Raytracing support
+    WINE_CPU_TOPOLOGY = "4:2";      # Optimize Wine CPU topology
+    __NV_PRIME_RENDER_OFFLOAD = "1"; # Enable PRIME render offload
     
     # Enable vsync to prevent tearing
     __GL_SYNC_TO_VBLANK = "1";

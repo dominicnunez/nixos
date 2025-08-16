@@ -16,6 +16,7 @@
     steam-run          # Run non-Steam games in Steam runtime
     steamcmd           # Steam command-line tool
     protontricks       # Tool for Proton/Wine games
+    protonup-qt        # Manage Proton GE versions for Steam
     
     # Game launchers
     lutris             # Universal game launcher
@@ -23,8 +24,13 @@
     bottles            # Wine prefix manager
     
     # Wine for Windows games
-    wineWowPackages.stable
+    wineWowPackages.staging  # Use staging for better compatibility
     winetricks
+    
+    # DirectX and DXVK support (critical for PoE2)
+    dxvk               # DirectX to Vulkan translation layer
+    vkd3d              # Direct3D 12 to Vulkan translation
+    vkd3d-proton       # Proton's fork of VKD3D
     
     # Performance tools
     mangohud           # Performance overlay
@@ -56,6 +62,7 @@
         vulkan-loader
         vulkan-validation-layers
         vulkan-tools
+        vulkan-extension-layer  # Additional Vulkan extensions
         
         # VA-API support for video acceleration
         libva
@@ -77,6 +84,8 @@
         libva
         mesa
         # mesa.drivers is deprecated, mesa includes drivers now
+        vulkan-loader  # 32-bit Vulkan loader for compatibility
+        dxvk           # 32-bit DXVK support
       ];
     };
     
