@@ -74,11 +74,12 @@
     gpu_load_color=FFFFFF,FF7800,CC0000
     gpu_text=GPU
     
+    # CPU configuration - overall usage instead of per-core
     cpu_stats
     cpu_temp
     cpu_power
     cpu_load_change
-    core_load
+    # core_load  # Commented out - this shows individual core usage
     cpu_load_value=50,90
     cpu_load_color=FFFFFF,FF7800,CC0000
     cpu_color=2E97CB
@@ -90,13 +91,19 @@
     ram
     ram_color=C26693
     
-    # FPS
+    # FPS and Frame Time Metrics
     fps
     fps_limit=0
     fps_value=30,60
     fps_color=B8BB26,FB4934,CC241D
     frametime
     frame_timing
+    
+    # FPS Metrics - Shows 1% and 0.1% lows
+    # 0 = Disabled
+    # 1 = Show FPS Avg, 1% and 0.1% lows
+    # 2 = Show FPS Avg only
+    fps_metrics=0,1,0.1
     
     # Other metrics
     gamemode
@@ -155,7 +162,7 @@
       addStartMenuShortcuts = false;
       minimizeOnGameLaunch = true;
       showFps = true;
-      enableMangoHud = true;
+      enableMangoHud = false;
       audioFix = false;
       autoInstallDxvk = true;
       autoInstallVkd3d = true;
@@ -164,7 +171,7 @@
       enableFsync = true;
       enableMsync = false;
       gameMode = true;
-      showMangohud = true;
+      showMangohud = false;
     };
     
     wineVersion = {
@@ -185,7 +192,7 @@
     
     [Performance]
     gamemode=True
-    mangohud=True
+    mangohud=False
     vkd3d=True
     dxvk=True
     
@@ -260,7 +267,8 @@
     
     # Gaming performance
     GAMEMODE = "1";
-    MANGOHUD = "1";
+    # MANGOHUD = "1";  # Disabled - uncomment to enable MangoHud overlay
+    MANGOHUD = "0";  # Explicitly disable MangoHud overlay globally
     
     # Steam
     STEAM_RUNTIME_PREFER_HOST_LIBRARIES = "0";
