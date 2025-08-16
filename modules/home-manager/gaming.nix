@@ -202,7 +202,8 @@
     # frametime
     # frame_count
     ## fps_metrics takes a list of decimal values or the value avg
-    fps_metrics=avg,0.01
+    fps_metrics=0.01
+    # fps_metrics=avg
 
     ### Display GPU throttling status based on Power, current, temp or "other"
     ## Only shows if throttling is currently happening
