@@ -43,7 +43,7 @@
     # ===== AI Tools =====
     c = "claude";               # Claude AI CLI
     gm = "gemini";              # Gemini AI CLI
-    cctkn = "python /home/aural/.claude/token_usage_report.py";  # Claude token usage
+    cctkn = "uv run /home/aural/.claude/token_usage_report.py";  # Claude token usage
     
     # ===== System Shortcuts =====
     cls = "clear";
