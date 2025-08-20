@@ -58,6 +58,7 @@
     flameshot  # Screenshot tool
     # copyq  # Clipboard manager
     kdePackages.partitionmanager  # KDE disk partitioning and formatting tool
+    gnome-disk-utility  # GNOME Disks - simpler disk formatting tool
     
     # Screen Recording Tools
     kooha  # Simple screen recorder with native Wayland support
