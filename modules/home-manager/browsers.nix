@@ -7,6 +7,7 @@
     # Browsers
     brave
     google-chrome
+    tor-browser  # Dedicated Tor browser - better than Brave's Tor mode
     # chromium is configured via programs.chromium below
     
     # Browser tools
