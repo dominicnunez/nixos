@@ -57,7 +57,12 @@
     # ===== System Utilities =====
     flameshot  # Screenshot tool
     # copyq  # Clipboard manager
-    peek  # GIF recorder
+    
+    # Screen Recording Tools
+    kooha  # Simple screen recorder with native Wayland support
+    obs-studio  # Professional screen recorder with Wayland support
+    gpu-screen-recorder  # GPU-accelerated recording for NVIDIA
+    gpu-screen-recorder-gtk  # GTK frontend for gpu-screen-recorder
 
     # ===== Gaming =====
     # Gaming packages moved to gaming.nix

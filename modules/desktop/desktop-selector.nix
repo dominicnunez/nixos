@@ -147,12 +147,17 @@ in
     SDL_VIDEODRIVER = "wayland";
   };
   
-  # XDG portal configuration for Wayland compositors
-  xdg.portal = lib.mkIf (desktopConfig.hyprland || desktopConfig.sway) {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
+  # XDG portal configuration for Wayland compositors and screen recording
+  xdg.portal = {
+    enable = desktopConfig.hyprland || desktopConfig.sway || desktopConfig.plasma;
+    extraPortals = with pkgs; lib.flatten [
+      (lib.optionals (desktopConfig.hyprland || desktopConfig.sway) [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ])
+      (lib.optionals desktopConfig.plasma [
+        kdePackages.xdg-desktop-portal-kde  # Required for screen recording in KDE
+      ])
     ];
   };
   

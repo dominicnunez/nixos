@@ -73,6 +73,11 @@
     notion-software = "notion-app-enhanced --disable-gpu";       # Software rendering
     notion-debug = "notion-app-enhanced --enable-logging --v=1"; # Debug mode
     
+    # ===== Screen Recording =====
+    record-gif = "kooha";  # GIF recorder with native Wayland support
+    record-screen = "obs";  # Professional screen recording
+    gpu-record = "gpu-screen-recorder-gtk";  # GPU-accelerated recording
+    
     # ===== Quick Edits =====
     nixconf = "cd /home/aural/Code/nixos && $EDITOR";
     aliases = "$EDITOR /home/aural/Code/nixos/modules/home-manager/aliases.nix";
