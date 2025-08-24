@@ -52,6 +52,8 @@
     # Controllers
     jstest-gtk         # Joystick testing
     antimicrox         # Map controller to keyboard
+    evtest             # Input device event monitoring
+    input-remapper     # Advanced input remapping tool
     
     # Emulators (optional)
     retroarch          # Multi-system emulator
