@@ -10,6 +10,12 @@
     spotify
     vlc              # Media player
     
+    # Audio Tools (JACK)
+    qjackctl         # JACK control GUI
+    jack2            # JACK audio connection kit
+    carla            # Audio plugin host
+    cadence          # JACK toolbox
+    
     # Development IDE
     # vscode moved to home-manager configuration for better user control
     

@@ -102,6 +102,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;  # Enable JACK compatibility
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
