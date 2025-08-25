@@ -37,6 +37,7 @@
       ./modules/services/docker.nix
       ./modules/services/ssh.nix
       ./modules/services/vpn.nix
+      ./modules/services/clamav.nix
       
       # System
       ./modules/system/auto-update-flakes.nix

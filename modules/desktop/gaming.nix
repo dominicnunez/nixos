@@ -54,6 +54,7 @@
     antimicrox         # Map controller to keyboard
     evtest             # Input device event monitoring
     input-remapper     # Advanced input remapping tool
+    evsieve            # Low-level event remapping
     
     # Emulators (optional)
     retroarch          # Multi-system emulator
