@@ -15,6 +15,9 @@
     jack2            # JACK audio connection kit
     carla            # Audio plugin host
     
+    # Text-to-Speech
+    espeak           # Compact text-to-speech synthesizer
+    
     # Development IDE
     # vscode moved to home-manager configuration for better user control
     
@@ -32,6 +35,11 @@
     
     # Password Management
     enpass           # Password manager you actually use
+    
+    # E-book Readers
+    calibre          # Full-featured e-book manager with reader
+    foliate          # Modern, lightweight EPUB reader
+    zathura          # Minimalist document viewer with EPUB support
   ];
   
   # Required for proprietary packages
