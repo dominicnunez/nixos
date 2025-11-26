@@ -9,10 +9,10 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./cachix.nix
-      
+
       # Home Manager
       ./modules/home-manager
-      
+
       # Development modules
       ./modules/development/tools.nix
       ./modules/development/languages.nix
@@ -20,7 +20,7 @@
       ./modules/development/databases.nix
       # ./modules/development/neovim.nix  # Moved to Home Manager
       ./modules/development/productivity.nix
-      
+
       # Desktop modules
       ./modules/desktop/desktop-selector.nix  # Desktop environment switcher
       ./modules/desktop/browsers.nix
@@ -28,20 +28,20 @@
       ./modules/desktop/fonts-themes.nix
       ./modules/desktop/gaming.nix
       ./modules/desktop/steam-vulkan-fix.nix  # Fix for Steam Vulkan/DirectX issues
-      
+
       # Hardware
       ./modules/hardware/bluetooth.nix
       ./modules/hardware/gpu-acceleration.nix  # AMD GPU hardware acceleration
-      
+
       # Services
       ./modules/services/docker.nix
       ./modules/services/ssh.nix
       ./modules/services/vpn.nix
       ./modules/services/clamav.nix
-      
+
       # System
       ./modules/system/auto-update-flakes.nix
-      
+
       # Security
       ./modules/security/hardening.nix
     ];
@@ -118,7 +118,7 @@
       kdePackages.kate
     ];
   };
-  
+
   # Allow mutable users to set passwords after installation
   users.mutableUsers = lib.mkForce true;
 
@@ -141,7 +141,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  wget  
+  #  wget
+  pkgs.kdePackages.ffmpegthumbs
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -176,4 +177,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-

@@ -16,3 +16,7 @@ hardware-configuration.nix
 # Ignore lock files from editors
 .#*
 .claude
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
