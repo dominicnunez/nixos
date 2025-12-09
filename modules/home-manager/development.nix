@@ -354,10 +354,10 @@
     git-lfs
     git-filter-repo
     git-crypt
-    gitAndTools.git-extras
-    gitAndTools.git-open
-    gitAndTools.diff-so-fancy
-    gitAndTools.hub
+    git-extras
+    git-open
+    diff-so-fancy
+    hub
     tig
 
     # Code formatting and linting
@@ -378,7 +378,7 @@
     # ==== Language-Specific Development Tools ====
 
     # Python Development
-    python312Full
+    python312
     python312Packages.pip
     python312Packages.virtualenv
     python312Packages.ipython

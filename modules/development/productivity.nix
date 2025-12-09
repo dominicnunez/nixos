@@ -36,13 +36,13 @@
     # - git undo, git info, git changelog
     # - git delete-branch, git pr
     # - 60+ extra commands
-    gitAndTools.git-extras
-    
+    git-extras
+
     # Hub - GitHub from the command line
     # - Create PRs: 'hub pull-request'
     # - Clone repos: 'hub clone user/repo'
     # - Browse issues: 'hub issue'
-    gitAndTools.hub
+    hub
     
     # Git interactive rebase tool
     git-interactive-rebase-tool

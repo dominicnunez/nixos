@@ -117,7 +117,7 @@
         # GPU-specific acceleration packages are in gpu-acceleration.nix
         
         # Additional video acceleration
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
         
         # Additional libraries for Wine/Proton compatibility
@@ -206,7 +206,7 @@
   # Fonts for games (some games need Windows fonts)
   fonts.packages = with pkgs; [
     corefonts          # Microsoft Core Fonts
-    vistafonts         # Windows Vista fonts
+    vista-fonts        # Windows Vista fonts
   ];
   
   # System-level Wine/Proton configuration for Path of Exile 2

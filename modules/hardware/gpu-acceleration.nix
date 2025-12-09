@@ -54,7 +54,7 @@
         # Video acceleration APIs
         libva
         libva-utils
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau
         
         # DirectX compatibility libraries
@@ -63,7 +63,7 @@
         
         # Additional tools
         libdrm
-        glxinfo
+        mesa-demos
       ];
       
       # 32-bit support for compatibility
@@ -209,9 +209,9 @@
     # GPU monitoring
     nvtopPackages.nvidia  # NVIDIA GPU process monitor
     # nvidia-system-monitor-qt  # GUI system monitor (optional)
-    
+
     # OpenGL testing
-    glxinfo
+    mesa-demos
     glmark2
     
     # Vulkan testing

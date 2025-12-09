@@ -22,13 +22,13 @@
       liberation_ttf      # Free alternatives to Arial, Times New Roman
       noto-fonts          # Google's font family
       noto-fonts-cjk-sans # Chinese, Japanese, Korean
-      noto-fonts-emoji    # Emoji support
+      noto-fonts-color-emoji    # Emoji support
       font-awesome        # Icon font
       
       # Additional quality fonts
       inter               # Excellent UI font
       roboto              # Google's material design font
-      ubuntu_font_family  # Ubuntu fonts
+      ubuntu-classic      # Ubuntu fonts
       source-sans-pro     # Adobe's sans font
       source-serif-pro    # Adobe's serif font
       
