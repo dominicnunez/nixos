@@ -31,17 +31,19 @@ in
   # Display Manager Configuration
   services.displayManager.sddm.enable = desktopConfig.useSddm;
   services.displayManager.gdm.enable = desktopConfig.useGdm;
-  services.displayManager.lightdm.enable = desktopConfig.useLightdm;
+  # LightDM still uses services.xserver.displayManager in 25.11
+  services.xserver.displayManager.lightdm.enable = desktopConfig.useLightdm;
 
   # Desktop Environments
   services.desktopManager.plasma6.enable = desktopConfig.plasma;  # NixOS 25.11 uses Plasma 6
   services.desktopManager.gnome.enable = desktopConfig.gnome;
-  services.desktopManager.xfce.enable = desktopConfig.xfce;
-  # Cinnamon and Budgie still use services.xserver.desktopManager in 25.11
+  services.desktopManager.pantheon.enable = desktopConfig.pantheon;
+
+  # XFCE, Cinnamon, Mate, and Budgie still use services.xserver.desktopManager in 25.11
+  services.xserver.desktopManager.xfce.enable = desktopConfig.xfce;
   services.xserver.desktopManager.cinnamon.enable = desktopConfig.cinnamon;
   services.xserver.desktopManager.mate.enable = desktopConfig.mate;
   services.xserver.desktopManager.budgie.enable = desktopConfig.budgie;
-  services.desktopManager.pantheon.enable = desktopConfig.pantheon;
   
   # Window Managers
   services.xserver.windowManager.i3 = lib.mkIf desktopConfig.i3 {

@@ -7,35 +7,27 @@
     enable = true;
     enableDefaultConfig = false;  # Disable default SSH config warnings
 
-    # SSH client settings
-    extraConfig = ''
-      # Global SSH client settings
-      Host *
-        # Security
-        ForwardAgent no
-        ForwardX11 no
-        PasswordAuthentication no
-        HashKnownHosts yes
-        
-        # Connection
-        ServerAliveInterval 60
-        ServerAliveCountMax 3
-        ConnectTimeout 10
-        
-        # Multiplexing for faster connections
-        ControlMaster auto
-        ControlPath ~/.ssh/sockets/%r@%h-%p
-        ControlPersist 600
-        
-        # Modern algorithms only
-        KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group16-sha512
-        Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
-        MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
-        HostKeyAlgorithms ssh-ed25519,rsa-sha2-512,rsa-sha2-256
-    '';
-    
     # Host-specific configurations
     matchBlocks = {
+      # Global defaults for all hosts
+      "*" = {
+        forwardAgent = false;
+        forwardX11 = false;
+        hashKnownHosts = true;
+        serverAliveInterval = 60;
+        serverAliveCountMax = 3;
+        extraOptions = {
+          PasswordAuthentication = "no";
+          ConnectTimeout = "10";
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/sockets/%r@%h-%p";
+          ControlPersist = "600";
+          KexAlgorithms = "curve25519-sha256@libssh.org,diffie-hellman-group16-sha512";
+          Ciphers = "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com";
+          MACs = "hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com";
+          HostKeyAlgorithms = "ssh-ed25519,rsa-sha2-512,rsa-sha2-256";
+        };
+      };
       # Example GitHub configuration
       "github.com" = {
         hostname = "github.com";
