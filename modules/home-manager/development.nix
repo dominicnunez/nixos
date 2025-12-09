@@ -5,29 +5,13 @@
   # Enhanced Git configuration
   programs.git = {
     enable = true;
-    userName = "Dominic";
-    userEmail = "dominicnunez@gmail.com";
 
-    # Delta - better git diffs
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        light = false;
-        side-by-side = true;
-        line-numbers = true;
-        syntax-theme = "Dracula";
-        features = "decorations";
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-style = "bold yellow ul";
-          file-decoration-style = "none";
-          hunk-header-decoration-style = "cyan box ul";
-        };
+    settings = {
+      user = {
+        name = "Dominic";
+        email = "dominicnunez@gmail.com";
       };
-    };
 
-    extraConfig = {
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
@@ -59,10 +43,9 @@
       url."git@github.com:".insteadOf = "gh:";
       url."git@gitlab.com:".insteadOf = "gl:";
       url."git@bitbucket.org:".insteadOf = "bb:";
-    };
 
-    # Comprehensive Git aliases
-    aliases = {
+      # Git aliases
+      alias = {
       # Status and info
       st = "status -sb";
       s = "status -s";
@@ -136,6 +119,7 @@
       # Find
       find = "!git ls-files | grep -i";
       grep = "grep -Ii";
+      };
     };
 
     # Ignore global files
@@ -181,6 +165,26 @@
       "*.dylib"
       "*.dll"
     ];
+  };
+
+  # Delta - better git diffs
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      light = false;
+      side-by-side = true;
+      line-numbers = true;
+      syntax-theme = "Dracula";
+      features = "decorations";
+      decorations = {
+        commit-decoration-style = "bold yellow box ul";
+        file-style = "bold yellow ul";
+        file-decoration-style = "none";
+        hunk-header-decoration-style = "cyan box ul";
+      };
+    };
   };
 
   # Lazygit - Terminal UI for git

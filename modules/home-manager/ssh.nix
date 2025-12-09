@@ -5,7 +5,8 @@
   # SSH client configuration
   programs.ssh = {
     enable = true;
-    
+    enableDefaultConfig = false;  # Disable default SSH config warnings
+
     # SSH client settings
     extraConfig = ''
       # Global SSH client settings
