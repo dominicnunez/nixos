@@ -26,7 +26,6 @@
     docker-compose
     lazydocker       # Terminal UI for docker
     dive             # Docker image explorer
-    podman-desktop   # GUI for containers and Kubernetes
   ];
   
   # Add your user to docker group (replace 'aural' with your username)
