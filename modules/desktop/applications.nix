@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [
     # Communication - Start with essentials
     discord
-    plasma5Packages.kdeconnect-kde
+    kdePackages.kdeconnect-kde
 
     # Music & Media
     spotify

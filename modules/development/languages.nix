@@ -13,7 +13,7 @@
     fnm             # Fast Node Manager (better than nvm)
 
     # Python development
-    python312Full
+    python312
     python312Packages.pip
     python312Packages.virtualenv
 

@@ -101,7 +101,7 @@
   environment.systemPackages = with pkgs; [
     # Security audit tools
     lynis          # Security auditing
-    chkrootkit     # Rootkit detection
+    # chkrootkit removed in 25.11 (unmaintained upstream)
     clamav         # Antivirus
     aide           # File integrity
     
