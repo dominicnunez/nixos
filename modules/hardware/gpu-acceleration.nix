@@ -26,7 +26,6 @@
         mesa
 
         # AMD Vulkan drivers
-        amdvlk
         vulkan-loader
         vulkan-validation-layers
         vulkan-tools
@@ -66,7 +65,6 @@
         ocl-icd
         pipewire
         libpulseaudio
-        amdvlk
       ];
     };
 
