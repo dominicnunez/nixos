@@ -39,7 +39,7 @@
         libvdpau-va-gl  # VDPAU via VA-API for AMD
 
         # Mesa VA-API driver for AMD
-        mesa.drivers
+        mesa
 
         # DirectX compatibility libraries
         libglvnd           # GL dispatch library
