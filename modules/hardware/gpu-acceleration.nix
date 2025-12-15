@@ -45,10 +45,6 @@
         libglvnd           # GL dispatch library
         ocl-icd           # OpenCL ICD loader
 
-        # ROCm OpenCL for AMD (optional, for compute)
-        rocmPackages.clr
-        rocmPackages.clr.icd
-
         # Additional tools
         libdrm
         mesa-demos
