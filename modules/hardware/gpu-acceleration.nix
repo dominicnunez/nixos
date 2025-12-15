@@ -13,8 +13,6 @@
     # AMD GPU configuration
     amdgpu = {
       initrd.enable = true;
-      amdvlk.enable = true;
-      amdvlk.support32Bit.enable = true;
     };
 
     # Graphics configuration
