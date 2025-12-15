@@ -601,9 +601,8 @@
     WINEPREFIX = "$HOME/.wine";
     WINEARCH = "win64";
 
-    # Vulkan - Using NVIDIA driver
-    # Note: This is overridden by steam-vulkan-fix.nix for NVIDIA GPU
-    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    # Vulkan - Using AMD RADV driver
+    AMD_VULKAN_ICD = "RADV";
 
     # Gaming performance
     GAMEMODE = "1";
@@ -618,10 +617,8 @@
     SDL_VIDEODRIVER = "wayland,x11";
 
     # Proton
-    PROTON_ENABLE_NVAPI = "1";
-    PROTON_HIDE_NVIDIA_GPU = "0";
-    PROTON_ENABLE_NGX_UPDATER = "1";
     PROTON_USE_VKD3D = "1";
+    # AMD doesn't need NVAPI settings
   };
 
   # XDG associations moved to xdg.nix

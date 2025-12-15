@@ -163,7 +163,7 @@
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
         gpu_device = 0;
-        # Performance level is auto-managed by NVIDIA drivers
+        # Performance level is auto-managed by AMD drivers
       };
       
       cpu = {
@@ -228,7 +228,7 @@
     
     # Shader cache settings
     __GL_SHADER_DISK_CACHE = "1";      # Enable shader disk cache
-    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/nvidia/GLCache"; # NVIDIA shader cache path
+    __GL_SHADER_DISK_CACHE_PATH = "$HOME/.cache/mesa_shader_cache"; # Mesa shader cache path
   };
   
   # Kernel configuration for ESYNC/FSYNC support
@@ -259,23 +259,23 @@
   # Create helper scripts for Path of Exile 2
   environment.etc."poe2-launch-options.txt" = {
     text = ''
-      # Path of Exile 2 Steam Launch Options
+      # Path of Exile 2 Steam Launch Options (AMD GPU)
       # Copy this line to Steam -> Path of Exile 2 -> Properties -> Launch Options:
-      
-      PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 WINE_FULLSCREEN_FSR=1 gamemoderun %command% --nologo --waitforpreload
-      
+
+      AMD_VULKAN_ICD=RADV DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 WINE_FULLSCREEN_FSR=1 gamemoderun %command% --nologo --waitforpreload
+
       # Alternative for DirectX factory error fix (USE THIS IF ERROR PERSISTS):
-      PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11
-      
+      AMD_VULKAN_ICD=RADV PROTON_USE_WINED3D=0 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11
+
       # Debug mode (if still having issues):
-      # PROTON_LOG=1 DXVK_LOG_LEVEL=info PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 DXVK_HUD=devinfo,fps,version,api VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
-      
+      # PROTON_LOG=1 DXVK_LOG_LEVEL=info AMD_VULKAN_ICD=RADV DXVK_ASYNC=1 DXVK_HUD=devinfo,fps,version,api VKD3D_CONFIG=dxr,dxr11 gamemoderun %command%
+
       # For Proton GE (recommended for PoE2):
       # 1. Use protonup-qt to install GE-Proton9-20 or newer
       # 2. In Steam, right-click PoE2 -> Properties -> Compatibility
       # 3. Force compatibility tool: GE-Proton9-20
       # 4. Use the launch options above
-      
+
       # IMPORTANT: If you get createdxgifactor1 error:
       # 1. Delete the game's shader cache: rm -rf ~/.steam/steam/steamapps/shadercache/2694490/
       # 2. Delete DXVK cache: rm -rf ~/.cache/dxvk/
@@ -293,37 +293,37 @@
       echo "Path of Exile 2 DirectX Fix Script"
       echo "========================================"
       echo ""
-      
-      # Check for NVIDIA GPU
-      if lspci | grep -i nvidia > /dev/null; then
-        echo "✓ NVIDIA GPU detected"
+
+      # Check for AMD GPU
+      if lspci | grep -i amd > /dev/null || lspci | grep -i radeon > /dev/null; then
+        echo "✓ AMD GPU detected"
       else
-        echo "⚠ Warning: No NVIDIA GPU detected. This script is optimized for NVIDIA."
+        echo "⚠ Warning: No AMD GPU detected. This script is optimized for AMD."
       fi
-      
+
       # Check Vulkan support
       echo ""
       echo "Checking Vulkan support..."
       if command -v vulkaninfo &> /dev/null; then
-        if vulkaninfo --summary 2>/dev/null | grep -q "NVIDIA"; then
-          echo "✓ NVIDIA Vulkan driver is available"
+        if vulkaninfo --summary 2>/dev/null | grep -qi "radv\|amd"; then
+          echo "✓ AMD RADV Vulkan driver is available"
         else
-          echo "⚠ NVIDIA Vulkan driver not detected!"
+          echo "⚠ AMD Vulkan driver not detected!"
         fi
       fi
-      
+
       # Clear shader caches
       echo ""
       echo "Clearing shader caches..."
       rm -rf ~/.steam/steam/steamapps/shadercache/2694490/ 2>/dev/null
       rm -rf ~/.cache/dxvk/ 2>/dev/null
-      rm -rf ~/.cache/nvidia/GLCache/ 2>/dev/null
+      rm -rf ~/.cache/mesa_shader_cache/ 2>/dev/null
       rm -rf ~/.steam/steam/steamapps/compatdata/2694490/pfx/drive_c/users/*/AppData/Local/Path\ of\ Exile\ 2/DirectXCache/ 2>/dev/null
       echo "✓ Shader caches cleared"
-      
+
       # Create necessary directories
       mkdir -p ~/.cache/dxvk
-      mkdir -p ~/.cache/nvidia/GLCache
+      mkdir -p ~/.cache/mesa_shader_cache
       echo "✓ Cache directories created"
       
       # Set up Wine prefix if needed
@@ -360,7 +360,7 @@
       echo "7. Go to Properties → General → Launch Options"
       echo "8. Add this (all one line):"
       echo ""
-      echo "PROTON_USE_WINED3D=0 PROTON_ENABLE_NVAPI=1 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11"
+      echo "AMD_VULKAN_ICD=RADV PROTON_USE_WINED3D=0 DXVK_ASYNC=1 VKD3D_CONFIG=dxr,dxr11 DXVK_STATE_CACHE=1 __GL_SHADER_DISK_CACHE=1 gamemoderun %command% --nologo --waitforpreload -dx11"
       echo ""
       echo "9. If the error persists, try adding -vulkan instead of -dx11"
       echo ""
