@@ -64,7 +64,7 @@
       Banner /etc/ssh/banner
       
       # Allow specific users only
-      AllowUsers aural
+      AllowUsers dom
       
       # Logging
       LogLevel VERBOSE
@@ -83,8 +83,8 @@
     '';
   };
   
-  # SSH keys for aural user (replace with your actual public key)
-  users.users.aural.openssh.authorizedKeys.keys = [
+  # SSH keys for dom user (replace with your actual public key)
+  users.users.dom.openssh.authorizedKeys.keys = [
     # Add your SSH public key here
     # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... user@hostname"
   ];

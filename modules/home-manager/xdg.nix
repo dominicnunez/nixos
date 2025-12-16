@@ -180,9 +180,9 @@
       };
 
       # Custom game launcher
-      game-launcher = lib.mkIf (builtins.pathExists "/home/aural/Scripts/game-launcher.sh") {
+      game-launcher = lib.mkIf (builtins.pathExists "/home/dom/Scripts/game-launcher.sh") {
         name = "Game Launcher";
-        exec = "/home/aural/Scripts/game-launcher.sh";
+        exec = "/home/dom/Scripts/game-launcher.sh";
         icon = "applications-games";
         comment = "Launch games with optimal settings";
         categories = ["Game"];
@@ -234,13 +234,13 @@
 
       # GTK bookmarks
       "gtk-3.0/bookmarks".text = ''
-        file:///home/aural/Documents
-        file:///home/aural/Downloads
-        file:///home/aural/Projects
-        file:///home/aural/Games
-        file:///home/aural/Pictures
-        file:///home/aural/Videos
-        file:///home/aural/Music
+        file:///home/dom/Documents
+        file:///home/dom/Downloads
+        file:///home/dom/Projects
+        file:///home/dom/Games
+        file:///home/dom/Pictures
+        file:///home/dom/Videos
+        file:///home/dom/Music
       '';
     };
 

@@ -126,6 +126,6 @@ pkgs.mkShell {
   PYTHONUNBUFFERED = "1";
   
   # Database URLs (adjust as needed)
-  # DATABASE_URL = "postgresql://aural:devpass@localhost/devdb";
+  # DATABASE_URL = "postgresql://dom:devpass@localhost/devdb";
   # REDIS_URL = "redis://localhost:6379";
 }

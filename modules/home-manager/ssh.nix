@@ -54,7 +54,7 @@
       # Uncomment and modify as needed
       # "homeserver" = {
       #   hostname = "192.168.1.100";
-      #   user = "aural";
+      #   user = "dom";
       #   port = 2222;
       #   identityFile = "~/.ssh/homeserver_ed25519";
       #   forwardX11 = true;
@@ -93,7 +93,7 @@
       
       if [ $# -eq 0 ]; then
         echo "Usage: ssh-keygen-ed25519 <keyname> [comment]"
-        echo "Example: ssh-keygen-ed25519 github 'aural@github'"
+        echo "Example: ssh-keygen-ed25519 github 'dom@github'"
         exit 1
       fi
       

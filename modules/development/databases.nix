@@ -16,15 +16,15 @@
       host    all             all             0.0.0.0/0               scram-sha-256
     '';
 
-    # Initialize with aural user and databases
+    # Initialize with dom user and databases
     initialScript = pkgs.writeText "init-postgresql" ''
-      CREATE ROLE aural WITH LOGIN PASSWORD 'devpass' CREATEDB SUPERUSER;
-      CREATE DATABASE devdb OWNER aural;
-      CREATE DATABASE testdb OWNER aural;
+      CREATE ROLE dom WITH LOGIN PASSWORD 'devpass' CREATEDB SUPERUSER;
+      CREATE DATABASE devdb OWNER dom;
+      CREATE DATABASE testdb OWNER dom;
 
       -- Grant all privileges
-      GRANT ALL PRIVILEGES ON DATABASE devdb TO aural;
-      GRANT ALL PRIVILEGES ON DATABASE testdb TO aural;
+      GRANT ALL PRIVILEGES ON DATABASE devdb TO dom;
+      GRANT ALL PRIVILEGES ON DATABASE testdb TO dom;
     '';
 
     # Performance settings for development

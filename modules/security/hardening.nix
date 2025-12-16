@@ -160,7 +160,7 @@
     
     extraRules = [
       {
-        users = [ "aural" ];
+        users = [ "dom" ];
         commands = [
           {
             command = "/run/current-system/sw/bin/systemctl restart";

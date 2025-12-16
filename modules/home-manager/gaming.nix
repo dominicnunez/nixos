@@ -495,8 +495,8 @@
   # Heroic Games Launcher configuration
   home.file.".config/heroic/config.json".text = builtins.toJSON {
     defaultSettings = {
-      defaultInstallPath = "/home/aural/Games/Heroic";
-      defaultWinePrefix = "/home/aural/Games/Heroic/prefixes";
+      defaultInstallPath = "/home/dom/Games/Heroic";
+      defaultWinePrefix = "/home/dom/Games/Heroic/prefixes";
       checkForUpdatesOnStartup = false;
       addDesktopShortcuts = true;
       addStartMenuShortcuts = false;
@@ -523,7 +523,7 @@
   # Bottles configuration
   home.file.".local/share/bottles/user.conf".text = ''
     [User]
-    custom_bottles_path=/home/aural/Games/Bottles
+    custom_bottles_path=/home/dom/Games/Bottles
 
     [Experiments]
     versioning=True
@@ -588,7 +588,7 @@
     [General]
     DisplayNames=true
     ControllerMappingFile=gamecontrollerdb.txt
-    LastControllerProfileDir=/home/aural/.config/antimicrox/profiles
+    LastControllerProfileDir=/home/dom/.config/antimicrox/profiles
 
     [Controllers]
     AutoLoadProfiles=true

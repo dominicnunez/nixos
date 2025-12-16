@@ -174,8 +174,8 @@
   };
 
   # Add user to required groups
-  users.users.aural = {
-    extraGroups = [ 
+  users.users.dom = {
+    extraGroups = [
       "gamemode"  # For GameMode
       "video"     # For GPU access
       "input"     # For controller access

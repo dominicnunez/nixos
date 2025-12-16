@@ -212,7 +212,7 @@
     vaults = {
       # Add your vault paths here if you want them pre-configured
       # "vault-id" = {
-      #   path = "/home/aural/Documents/ObsidianVault";
+      #   path = "/home/dom/Documents/ObsidianVault";
       #   open = true;
       # };
     };

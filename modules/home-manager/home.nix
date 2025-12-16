@@ -17,8 +17,8 @@
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "aural";
-  home.homeDirectory = "/home/aural";
+  home.username = "dom";
+  home.homeDirectory = "/home/dom";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

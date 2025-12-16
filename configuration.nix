@@ -111,9 +111,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
-  users.users.aural = {
+  users.users.dom = {
     isNormalUser = true;
-    description = "Aural";
+    description = "Dominic";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
@@ -125,7 +125,7 @@
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "aural";
+  services.displayManager.autoLogin.user = "dom";
 
   # Install firefox.
   programs.firefox.enable = true;

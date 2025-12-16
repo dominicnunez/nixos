@@ -15,8 +15,8 @@
           "/opt"
         ];
         OnAccessExcludePath = [
-          "/home/aural/.cache"
-          "/home/aural/.local/share/Trash"
+          "/home/dom/.cache"
+          "/home/dom/.local/share/Trash"
         ];
         OnAccessPrevention = false;  # Set to true for blocking, false for monitoring only
         OnAccessExtraScanning = true;  # Scan files opened for reading
@@ -86,7 +86,7 @@
   ];
   
   # Add user to clamav group for GUI access
-  users.users.aural = {
+  users.users.dom = {
     extraGroups = [ "clamav" ];
   };
   

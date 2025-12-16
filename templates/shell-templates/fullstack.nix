@@ -146,7 +146,7 @@ pkgs.mkShell {
   FRONTEND_PORT = "3000";
   
   # Database connections
-  DATABASE_URL = "postgresql://aural:devpass@localhost/devdb";
+  DATABASE_URL = "postgresql://dom:devpass@localhost/devdb";
   REDIS_URL = "redis://localhost:6379";
   
   # Development settings

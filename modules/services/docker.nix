@@ -28,8 +28,8 @@
     dive             # Docker image explorer
   ];
   
-  # Add your user to docker group (replace 'aural' with your username)
-  users.users.aural = {
+  # Add your user to docker group
+  users.users.dom = {
     extraGroups = [ "docker" ];
   };
 }
