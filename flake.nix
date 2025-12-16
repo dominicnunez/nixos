@@ -14,10 +14,12 @@
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-        ({ pkgs, ... }: {
+        {
           nixpkgs.overlays = [ claude-code.overlays.default ];
-          environment.systemPackages = with pkgs; [ 
-            claude-code 
+        }
+        ({ pkgs, ... }: {
+          environment.systemPackages = [
+            pkgs.claude-code
           ];
         })
       ];
