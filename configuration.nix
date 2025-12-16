@@ -58,7 +58,11 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    # Store WiFi passwords unencrypted to bypass KDE Wallet requirement
+    wifi.backend = "iwd";  # Alternative: use iwd backend which doesn't use wallet
+  };
   hardware.enableRedistributableFirmware = true;
 
   # Set your time zone.
