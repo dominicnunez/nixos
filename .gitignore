@@ -5,9 +5,6 @@ nixos-config/
 result
 result-*
 
-# Ignore hardware-specific files that shouldn't be shared
-hardware-configuration.nix
-
 # Ignore swap files
 *.swp
 *~
