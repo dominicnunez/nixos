@@ -38,9 +38,9 @@ let
       fi
     else
       echo "Claude Code is managed by system configuration"
-      
+
       # Update flake for system
-      cd /home/dom/Code/nixos
+      cd $HOME/Code/nixos
       ${pkgs.nix}/bin/nix flake update claude-code
       
       if ! ${pkgs.git}/bin/git diff --quiet flake.lock; then
@@ -98,7 +98,7 @@ in
       # Check if there are changes to flake.lock
       if ! git diff --quiet flake.lock; then
         echo "Updates found for claude-code, rebuilding system..."
-        
+
         # Get version info
         OLD_VERSION=$(claude --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' || echo "unknown")
         NEW_VERSION=$(nix run github:sadjow/claude-code-nix -- --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' || echo "unknown")
@@ -108,9 +108,9 @@ in
         git commit -m "Auto-update: claude-code $OLD_VERSION -> $NEW_VERSION" || true
 
         # Test the configuration first
-        if nixos-rebuild dry-build --flake /home/dom/Code/nixos; then
+        if nixos-rebuild dry-build --flake .; then
           # Rebuild the system
-          nixos-rebuild switch --flake /home/dom/Code/nixos
+          nixos-rebuild switch --flake .
           
           # Verify the update
           FINAL_VERSION=$(claude --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' || echo "unknown")

@@ -43,7 +43,7 @@
     # ===== AI Tools =====
     c = "claude";               # Claude AI CLI
     gm = "gemini";              # Gemini AI CLI
-    cctkn = "uv run /home/dom/.claude/token_usage_report.py";  # Claude token usage
+    cctkn = "uv run ~/.claude/token_usage_report.py";  # Claude token usage
     
     # ===== System Shortcuts =====
     cls = "clear";
@@ -56,9 +56,9 @@
     nvm = "fnm";                # Fast Node Manager (nvm compatibility)
     
     # ===== NixOS Specific =====
-    rebuild = "sudo nixos-rebuild switch --flake /home/dom/Code/nixos";
-    rebuild-test = "sudo nixos-rebuild test --flake /home/dom/Code/nixos";
-    rebuild-boot = "sudo nixos-rebuild boot --flake /home/dom/Code/nixos";
+    rebuild = "sudo nixos-rebuild switch --flake ~/Code/nixos";
+    rebuild-test = "sudo nixos-rebuild test --flake ~/Code/nixos";
+    rebuild-boot = "sudo nixos-rebuild boot --flake ~/Code/nixos";
     
     nix-clean = "sudo nix-collect-garbage -d";
     nix-clean-old = "sudo nix-collect-garbage --delete-older-than 7d";
@@ -79,8 +79,8 @@
     gpu-record = "gpu-screen-recorder-gtk";  # GPU-accelerated recording
     
     # ===== Quick Edits =====
-    nixconf = "cd /home/dom/Code/nixos && $EDITOR";
-    aliases = "$EDITOR /home/dom/Code/nixos/modules/home-manager/aliases.nix";
+    nixconf = "cd ~/Code/nixos && $EDITOR";
+    aliases = "$EDITOR ~/Code/nixos/modules/home-manager/aliases.nix";
     
     # ===== System Information =====
     sysinfo = "neofetch";

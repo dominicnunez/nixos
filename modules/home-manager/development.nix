@@ -527,6 +527,9 @@
     kdel = "kubectl delete";
     klog = "kubectl logs";
     kexec = "kubectl exec -it";
+
+    # NixOS
+    update-claude = "cd ~/Code/nixos && nix flake lock --update-input claude-code && sudo nixos-rebuild switch --flake .#";
   };
 
   # Additional language-specific configurations can be added here
