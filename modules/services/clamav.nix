@@ -15,8 +15,8 @@
           "/opt"
         ];
         OnAccessExcludePath = [
-          "/home/dom/.cache"
-          "/home/dom/.local/share/Trash"
+          "${config.users.users.dom.home}/.cache"
+          "${config.users.users.dom.home}/.local/share/Trash"
         ];
         OnAccessPrevention = false;  # Set to true for blocking, false for monitoring only
         OnAccessExtraScanning = true;  # Scan files opened for reading
