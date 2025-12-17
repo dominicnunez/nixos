@@ -42,39 +42,4 @@
     # Misc productivity
     tldr               # Simplified man pages
   ];
-
-  # Git configuration moved to Home Manager
-  # programs.git = {
-  #   enable = true;
-  #   config = {
-  #     init.defaultBranch = "main";
-  #     pull.rebase = true;
-  #     push.autoSetupRemote = true;
-  #     core.editor = "nvim";
-  #   };
-  # };
-  
-  # Neovim configuration moved to Home Manager
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  # };
-  
-  # Shell aliases moved to Home Manager
-  # environment.shellAliases = {
-  #   ll = "eza -l";
-  #   la = "eza -la";
-  #   lt = "eza --tree";
-  #   ".." = "cd ..";
-  #   "..." = "cd ../..";
-  #   gs = "git status";
-  #   gc = "git commit";
-  #   gp = "git push";
-  #   gl = "git pull";
-  #   gd = "git diff";
-  #   cat = "bat";
-  #   find = "fd";
-  # };
 }

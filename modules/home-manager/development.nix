@@ -368,12 +368,16 @@
     pre-commit
     commitizen
     nixpkgs-fmt  # Nix code formatter for VS Code and CLI
+    nil  # Nix LSP server
 
     # Development utilities
     jq
     yq
     httpie
     curlie
+    ripgrep  # Fast grep alternative
+    fd  # Fast find alternative
+    lua-language-server  # Lua LSP server
 
     # Documentation
     mdbook
@@ -390,14 +394,17 @@
     python312Packages.pytest
     poetry
     ruff
+    pyright  # Python LSP server
 
     # JavaScript/TypeScript Development
     nodejs_22  # Comes with npm 10.9.2
     # Note: npm 11.5.2 needs to be installed via: npm install -g npm@11.5.2
     nodePackages.pnpm
+    nodePackages.vscode-langservers-extracted  # HTML/CSS/JSON/ESLint LSP servers
+    prettierd  # Fast prettier daemon for formatting
     # nodePackages.typescript  # Removed to avoid collision with gemini-cli
     # nodePackages.typescript-language-server  # Install via npm when needed
-    # nodePackages.prettier  # Removed to avoid collision with gemini-cli
+    # nodePackages.prettier  # Removed to avoid collision with gemini-cli (using prettierd instead)
     # Note: Install TypeScript/Prettier tools via npm globally: npm install -g typescript typescript-language-server prettier
 
     # Rust Development

@@ -88,66 +88,10 @@
     # Add your SSH public key here
     # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... user@hostname"
   ];
-  
-  # Tmux for persistent sessions
-  programs.tmux = {
-    enable = true;
-    keyMode = "vi";
-    terminal = "screen-256color";
-    historyLimit = 50000;
-    
-    extraConfig = ''
-      # Enable mouse support
-      set -g mouse on
-      
-      # Better pane navigation
-      bind -n M-h select-pane -L
-      bind -n M-j select-pane -D
-      bind -n M-k select-pane -U
-      bind -n M-l select-pane -R
-      
-      # Better window navigation
-      bind -n M-1 select-window -t 1
-      bind -n M-2 select-window -t 2
-      bind -n M-3 select-window -t 3
-      bind -n M-4 select-window -t 4
-      bind -n M-5 select-window -t 5
-      
-      # Split panes with | and -
-      bind | split-window -h
-      bind - split-window -v
-      
-      # Reload config
-      bind r source-file /etc/tmux.conf \; display "Config reloaded!"
-      
-      # Status bar
-      set -g status-bg black
-      set -g status-fg white
-      set -g status-left '#[fg=green]#H #[fg=yellow]| '
-      set -g status-right '#[fg=yellow]%Y-%m-%d %H:%M'
-      
-      # Activity monitoring
-      setw -g monitor-activity on
-      set -g visual-activity on
-    '';
-  };
-  
+
   # SSH agent
   programs.ssh.startAgent = true;
   
   # Mosh for mobile connections
   programs.mosh.enable = true;
-  
-  # Additional SSH tools
-  environment.systemPackages = with pkgs; [
-    openssh
-    mosh
-    sshfs
-    ssh-audit
-    ssh-copy-id
-    autossh
-    tmux
-    tmuxinator
-    screen
-  ];
 }

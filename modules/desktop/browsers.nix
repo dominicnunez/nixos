@@ -1,32 +1,12 @@
-# modules/desktop/browsers.nix - Web browsers configuration
+# modules/desktop/browsers.nix - System-level browser configuration
+# Note: Browser packages and user configs are in home-manager/browsers.nix
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    # Primary browsers (Firefox already enabled in main config)
-    brave
-    google-chrome
-    
-    # Optional: Chromium as open-source alternative
-    chromium
-  ];
-  
-  # Firefox is already configured in main configuration.nix
-  # We can enhance it here with additional policies if needed
-  programs.firefox = {
-    enable = true;
-    
-    # Firefox preferences (basic privacy settings)
-    preferences = {
-      "browser.disableResetPrompt" = true;
-      "browser.shell.checkDefaultBrowser" = false;
-      "browser.startup.homepage" = "about:blank";
-      "privacy.trackingprotection.enabled" = true;
-      "privacy.trackingprotection.socialtracking.enabled" = true;
-    };
-  };
-  
-  # Set default browser associations
+  # Enable Firefox at system level (required for some policies)
+  programs.firefox.enable = true;
+
+  # Set default browser associations (system-level MIME types)
   xdg.mime.defaultApplications = {
     "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";

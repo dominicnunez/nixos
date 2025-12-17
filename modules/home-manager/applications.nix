@@ -27,6 +27,7 @@
     obsidian
     standardnotes  # Privacy-focused note-taking
     libreoffice-fresh  # Office suite
+    thunderbird  # Email client
     # logseq  # Alternative knowledge base
     
     # Notion wrapper using Chromium in app mode (avoids Electron issues)
@@ -78,6 +79,11 @@
     krita  # Digital painting
     blender  # 3D modeling
     freecad  # CAD software
+
+    # ===== E-book Readers =====
+    calibre  # Full-featured e-book manager with reader
+    foliate  # Modern, lightweight EPUB reader
+    zathura  # Minimalist document viewer with EPUB support
   ];
 
   # Application-specific configurations
