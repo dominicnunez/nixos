@@ -8,21 +8,26 @@
     };
   };
 
-  outputs = { self, nixpkgs, claude-code, home-manager, ... }: {
-    nixosConfigurations.sinistercat = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, claude-code, home-manager, ... }:
+    let
+      hostname = "nixos";  # Define hostname once
       system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          nixpkgs.overlays = [ claude-code.overlays.default ];
-        }
-        ({ pkgs, ... }: {
-          environment.systemPackages = [
-            pkgs.claude-code
-          ];
-        })
-      ];
+    in {
+      nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = [ claude-code.overlays.default ];
+            networking.hostName = hostname;  # Set hostname from variable
+          }
+          ({ pkgs, ... }: {
+            environment.systemPackages = [
+              pkgs.claude-code
+            ];
+          })
+        ];
+      };
     };
-  };
 }
