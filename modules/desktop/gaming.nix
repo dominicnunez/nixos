@@ -9,61 +9,34 @@
     dedicatedServer.openFirewall = true;  # For Steam game servers
   };
 
-  # Gaming-related packages
+  # System-level gaming packages
+  # Note: User gaming tools (launchers, emulators, etc.) are in home-manager/gaming.nix
   environment.systemPackages = with pkgs; [
-    # Steam and tools
+    # Steam and runtime tools
     steam
     steam-run          # Run non-Steam games in Steam runtime
     steamcmd           # Steam command-line tool
-    protontricks       # Tool for Proton/Wine games
-    protonup-qt        # Manage Proton GE versions for Steam
-    
-    # Game launchers
-    lutris             # Universal game launcher
-    heroic             # Epic Games & GOG launcher
-    bottles            # Wine prefix manager
-    
-    # Wine for Windows games - Full package for maximum compatibility
+
+    # Wine for Windows games - System-level Wine runtime
     wineWowPackages.stagingFull  # Full staging with all features
-    winetricks
-    
-    # DirectX and DXVK support (critical for PoE2)
+
+    # DirectX and DXVK support (system libraries for gaming)
     dxvk               # DirectX to Vulkan translation layer
     dxvk_2            # DXVK 2.x for newer DirectX support
     vkd3d              # Direct3D 12 to Vulkan translation
     vkd3d-proton       # Proton's fork of VKD3D
-    
-    # Additional DirectX/Graphics libraries for PoE2 fix
+
+    # Additional DirectX/Graphics libraries
     mesa-demos         # OpenGL/Mesa demos and tools
     vulkan-caps-viewer # Check Vulkan capabilities
     renderdoc          # Graphics debugger
-    
-    # Additional Wine/Proton dependencies for PoE2
+
+    # Wine/Proton system dependencies
     cabextract         # Extract Windows cabinet files
     p7zip              # Archive support
     unzip              # ZIP support
     zenity             # GUI dialogs for Wine
-    
-    # Performance tools
-    mangohud           # Performance overlay
-    gamemode           # Optimize performance for games
-    gamescope          # Wayland game compositor
-    
-    # Controllers
-    jstest-gtk         # Joystick testing
-    antimicrox         # Map controller to keyboard
-    evtest             # Input device event monitoring
-    input-remapper     # Advanced input remapping tool
-    evsieve            # Low-level event remapping
-    
-    # Emulators (optional)
-    retroarch          # Multi-system emulator
-    dolphin-emu        # GameCube/Wii emulator
-    
-    # Utilities
-    goverlay           # GUI for MangoHud settings
-    r2modman           # Mod manager for Unity games
-    
+
     # System libraries that Wine/Proton might need
     gnutls             # TLS support
     openldap           # LDAP support
@@ -74,16 +47,16 @@
     libkrb5            # Kerberos support
     pkgsi686Linux.gnutls  # 32-bit TLS support
     samba              # SMB/CIFS support (some games need this)
-    
+
     # Audio libraries
     alsa-lib
     alsa-plugins
-    
+
     # Graphics libraries
     freetype
     fontconfig
     lcms2              # Color management
-    
+
     # Compression libraries
     bzip2
     zlib

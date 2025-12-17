@@ -245,27 +245,8 @@
         },
       }
     '';
-    
-    # Extra packages needed for LSP and functionality
-    extraPackages = with pkgs; [
-      # Language servers
-      # nodePackages.typescript-language-server  # Install via npm to avoid collision with gemini-cli
-      nodePackages.vscode-langservers-extracted
-      lua-language-server
-      nil # Nix LSP
-      rust-analyzer
-      gopls
-      pyright
-      
-      # Formatters
-      nixpkgs-fmt
-      rustfmt
-      black
-      prettierd
-      
-      # Tools
-      ripgrep
-      fd
-    ];
+
+    # Note: LSP servers, formatters, and development tools are installed via
+    # development.nix to avoid duplication. Neovim will find them in PATH.
   };
 }

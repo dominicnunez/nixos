@@ -17,11 +17,15 @@
     mangohud
     goverlay  # GUI for MangoHud
     gamemode
+    gamescope  # Wayland game compositor
 
     # ===== Controller Support =====
     jstest-gtk  # Joystick testing GUI
     antimicrox  # Controller mapping
     sc-controller  # Steam Controller configuration
+    evtest  # Input device event monitoring
+    input-remapper  # Advanced input remapping tool
+    evsieve  # Low-level event remapping
 
     # ===== Emulators =====
     retroarch
