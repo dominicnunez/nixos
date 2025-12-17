@@ -22,11 +22,6 @@
             nixpkgs.overlays = [ claude-code.overlays.default ];
             networking.hostName = hostname;  # Set hostname from variable
           }
-          ({ pkgs, ... }: {
-            environment.systemPackages = [
-              pkgs.claude-code
-            ];
-          })
         ];
       };
     };

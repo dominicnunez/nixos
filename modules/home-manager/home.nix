@@ -33,6 +33,7 @@
   home.packages = with pkgs; [
     # We'll add user-specific packages here as we migrate
     libnotify  # For notify-send command to test notifications
+    claude-code  # AI coding assistant
   ];
 
   # Basic configuration to start
