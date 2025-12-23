@@ -158,7 +158,15 @@
   #   enableSSHSupport = true;
   # };
 
-    # Enable flakes and new nix command
+    # Create /bin/bash symlink for compatibility (needed by Claude Code's Chrome integration)
+  # Create /usr/bin/node symlink so Claude Code MCP servers find nix's node before fnm's
+  system.activationScripts.binCompatibility = ''
+    mkdir -p /bin /usr/bin
+    ln -sf ${pkgs.bash}/bin/bash /bin/bash
+    ln -sf ${pkgs.nodejs_22}/bin/node /usr/bin/node
+  '';
+
+  # Enable flakes and new nix command
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
