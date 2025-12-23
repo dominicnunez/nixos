@@ -42,6 +42,7 @@
     
     # ===== AI Tools =====
     c = "claude";               # Claude AI CLI
+    ccr = "claude --chrome --resume";  # Claude AI CLI with Chrome + resume last session
     gm = "gemini";              # Gemini AI CLI
     cctkn = "uv run /home/aural/.claude/token_usage_report.py";  # Claude token usage
     

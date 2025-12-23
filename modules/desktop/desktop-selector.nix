@@ -36,6 +36,13 @@ in
 
   # Desktop Environments
   services.desktopManager.plasma6.enable = desktopConfig.plasma;  # NixOS 25.11 uses Plasma 6
+
+  # Exclude KDE Wallet packages from Plasma
+  environment.plasma6.excludePackages = lib.mkIf desktopConfig.plasma (with pkgs.kdePackages; [
+    kwallet
+    kwalletmanager
+  ]);
+
   services.desktopManager.gnome.enable = desktopConfig.gnome;
   services.desktopManager.pantheon.enable = desktopConfig.pantheon;
 
@@ -44,7 +51,20 @@ in
   services.xserver.desktopManager.cinnamon.enable = desktopConfig.cinnamon;
   services.xserver.desktopManager.mate.enable = desktopConfig.mate;
   services.xserver.desktopManager.budgie.enable = desktopConfig.budgie;
-  
+
+  # Disable kwallet SSH agent integration
+  programs.ssh.askPassword = lib.mkIf desktopConfig.plasma "";
+
+  # Mask KDE Wallet systemd user services to prevent them from starting
+  systemd.user.services.kwallet5 = lib.mkIf desktopConfig.plasma {
+    enable = false;
+    unitConfig.ConditionPathExists = "/dev/null";  # Never start
+  };
+  systemd.user.services.kwallet6 = lib.mkIf desktopConfig.plasma {
+    enable = false;
+    unitConfig.ConditionPathExists = "/dev/null";  # Never start
+  };
+
   # Window Managers
   services.xserver.windowManager.i3 = lib.mkIf desktopConfig.i3 {
     enable = true;
