@@ -15,6 +15,9 @@ in
     
     # Bash-specific settings
     initExtra = ''
+      # Ensure ~/.local/bin is first in PATH (for user wrappers like claude)
+      export PATH="$HOME/.local/bin:$PATH"
+
       # Better history
       export HISTCONTROL=ignoredups:erasedups
       export HISTSIZE=100000
