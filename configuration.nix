@@ -28,6 +28,7 @@
       ./modules/desktop/fonts-themes.nix
       ./modules/desktop/gaming.nix
       ./modules/desktop/steam-vulkan-fix.nix  # Fix for Steam Vulkan/DirectX issues
+      ./modules/desktop/plasma-stability.nix  # Fix for Plasma taskbar freezing
 
       # Hardware
       ./modules/hardware/bluetooth.nix
@@ -50,7 +51,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "sinistercat"; # Define your hostname.
+  # networking.hostName is set in flake.nix
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
