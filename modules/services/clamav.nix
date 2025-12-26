@@ -15,8 +15,8 @@
           "/opt"
         ];
         OnAccessExcludePath = [
-          "/home/aural/.cache"
-          "/home/aural/.local/share/Trash"
+          "${config.users.users.aural.home}/.cache"
+          "${config.users.users.aural.home}/.local/share/Trash"
         ];
         OnAccessPrevention = false;  # Set to true for blocking, false for monitoring only
         OnAccessExtraScanning = true;  # Scan files opened for reading

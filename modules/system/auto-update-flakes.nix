@@ -40,7 +40,7 @@ let
       echo "Claude Code is managed by system configuration"
       
       # Update flake for system
-      cd /home/aural/Code/nixos
+      cd $HOME/Code/nixos
       ${pkgs.nix}/bin/nix flake update claude-code
       
       if ! ${pkgs.git}/bin/git diff --quiet flake.lock; then
@@ -63,10 +63,10 @@ in
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "aural";
+      User = config.users.users.aural.name;
       Environment = [
-        "HOME=/home/aural"
-        "PATH=/run/current-system/sw/bin:/home/aural/.nix-profile/bin"
+        "HOME=${config.users.users.aural.home}"
+        "PATH=/run/current-system/sw/bin:${config.users.users.aural.home}/.nix-profile/bin"
       ];
     };
   };
@@ -93,7 +93,7 @@ in
     path = [ pkgs.nix pkgs.git pkgs.nixos-rebuild pkgs.curl pkgs.jq ];
     after = [ "update-claude-code.service" ];
     script = ''
-      cd /home/aural/Code/nixos
+      cd $HOME/Code/nixos
 
       # Check if there are changes to flake.lock
       if ! git diff --quiet flake.lock; then
@@ -108,9 +108,9 @@ in
         git commit -m "Auto-update: claude-code $OLD_VERSION -> $NEW_VERSION" || true
 
         # Test the configuration first
-        if nixos-rebuild dry-build --flake /home/aural/Code/nixos; then
+        if nixos-rebuild dry-build --flake .; then
           # Rebuild the system
-          nixos-rebuild switch --flake /home/aural/Code/nixos
+          nixos-rebuild switch --flake .
           
           # Verify the update
           FINAL_VERSION=$(claude --version 2>/dev/null | grep -oP '\d+\.\d+\.\d+' || echo "unknown")
