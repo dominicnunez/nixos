@@ -163,7 +163,7 @@
   system.activationScripts.binCompatibility = ''
     mkdir -p /bin /usr/bin
     ln -sf ${pkgs.bash}/bin/bash /bin/bash
-    ln -sf ${pkgs.nodejs_22}/bin/node /usr/bin/node
+    ln -sf ${pkgs.nodejs_24}/bin/node /usr/bin/node
   '';
 
   # Enable flakes and new nix command

@@ -397,7 +397,7 @@
     pyright  # Python LSP server
 
     # JavaScript/TypeScript Development
-    nodejs_22  # Comes with npm 10.9.2
+    nodejs_24  # Node.js 24 LTS
     # Note: npm 11.5.2 needs to be installed via: npm install -g npm@11.5.2
     nodePackages.pnpm
     nodePackages.vscode-langservers-extracted  # HTML/CSS/JSON/ESLint LSP servers
@@ -473,7 +473,7 @@
     
     if [ "$INSTALLED_VERSION" != "$TARGET_NPM_VERSION" ]; then
       echo "Installing npm version $TARGET_NPM_VERSION..."
-      ${pkgs.nodejs_22}/bin/npm install -g npm@$TARGET_NPM_VERSION --prefix=$HOME/.npm-global --cache=$HOME/.npm
+      ${pkgs.nodejs_24}/bin/npm install -g npm@$TARGET_NPM_VERSION --prefix=$HOME/.npm-global --cache=$HOME/.npm
       echo "npm $TARGET_NPM_VERSION installed successfully"
     else
       echo "npm $TARGET_NPM_VERSION is already installed"
