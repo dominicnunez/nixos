@@ -28,6 +28,7 @@
       ./modules/desktop/fonts-themes.nix
       ./modules/desktop/gaming.nix
       ./modules/desktop/steam-vulkan-fix.nix  # Fix for Steam Vulkan/DirectX issues
+      ./modules/desktop/plasma-stability.nix  # Fix for Plasma taskbar freezing
 
       # Hardware
       ./modules/hardware/bluetooth.nix
