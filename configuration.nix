@@ -95,7 +95,26 @@
   services.xserver.xkb = {
     layout = "us,us";
     variant = ",colemak";
-    options = "caps:backspace,grp:win_space_toggle";
+    options = "grp:win_space_toggle";
+  };
+
+  # Enable uinput for virtual input devices (needed by kanata)
+  hardware.uinput.enable = true;
+
+  # Key remapping for both X11 and Wayland using kanata
+  services.kanata = {
+    enable = true;
+    keyboards.default = {
+      devices = [ ];  # Empty = auto-detect all keyboards
+      config = ''
+        (defsrc
+          caps bspc
+        )
+        (deflayer default
+          bspc caps
+        )
+      '';
+    };
   };
 
   # Enable CUPS to print documents.
