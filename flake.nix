@@ -10,7 +10,7 @@
 
   outputs = { self, nixpkgs, claude-code, home-manager, ... }:
     let
-      hostname = "sinistercat";  # Define hostname once
+      hostname = "nixos";  # Define hostname once
       system = "x86_64-linux";
     in {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {

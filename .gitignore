@@ -5,9 +5,6 @@ nixos-config/
 result
 result-*
 
-# Hardware configuration is now tracked for flake compatibility
-# Each branch (main, amd, nvidia) has its own hardware-configuration.nix
-
 # Ignore swap files
 *.swp
 *~
