@@ -100,6 +100,11 @@
   # Enable uinput for virtual input devices (needed by kanata)
   hardware.uinput.enable = true;
 
+  # Ensure uinput device has correct group permissions
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="uinput", MODE="0660", TAG+="uaccess"
+  '';
+
   # Key remapping for both X11 and Wayland using kanata
   services.kanata = {
     enable = true;
@@ -113,6 +118,16 @@
           bspc caps
         )
       '';
+    };
+  };
+
+  # Grant kanata service access to uinput device
+  # Disable sandboxing features that interfere with device access
+  systemd.services.kanata-default = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;  # Use root instead of dynamic user
+      SupplementaryGroups = [ "uinput" "input" ];
+      PrivateUsers = lib.mkForce false;
     };
   };
 
