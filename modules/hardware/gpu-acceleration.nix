@@ -23,8 +23,9 @@
     # Select the driver package (stable, beta, or specific version)
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     
-    # Power management (can cause issues, disable if you have problems)
-    powerManagement.enable = true;
+    # Power management disabled - causes plasmashell freezes on Wayland
+    # When GPU enters power-saving mode, compositor loses communication and hangs
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
   };
   
