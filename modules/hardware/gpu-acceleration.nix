@@ -140,7 +140,6 @@
     CUDA_CACHE_DISABLE = "0";
     
     # Wayland support for NVIDIA (if using Wayland)
-    WLR_NO_HARDWARE_CURSORS = "1";  # Fix cursor issues on Wayland
     NIXOS_OZONE_WL = "1";  # Enable Wayland for Electron apps
   };
   
@@ -181,7 +180,7 @@
     
     # Screen section for compositing and G-Sync
     screenSection = ''
-      Option "metamodes" "nvidia-auto-select +0+0 {ForceCompositionPipeline=On, AllowGSYNC=On}"
+      Option "metamodes" "nvidia-auto-select +0+0 {AllowGSYNC=On}"
       Option "AllowIndirectGLXProtocol" "off"
       Option "TripleBuffer" "on"
     '';
