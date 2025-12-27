@@ -90,7 +90,11 @@
     # NVIDIA GPU configuration
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
-    
+
+    # Fix EGL context creation failures on Wayland + NVIDIA
+    __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";  # Prevents plasmashell EGL decoration crashes
+
     # Enable hardware acceleration
     LIBGL_DRI3_ENABLE = "1";
     
@@ -140,7 +144,6 @@
     CUDA_CACHE_DISABLE = "0";
     
     # Wayland support for NVIDIA (if using Wayland)
-    WLR_NO_HARDWARE_CURSORS = "1";  # Fix cursor issues on Wayland
     NIXOS_OZONE_WL = "1";  # Enable Wayland for Electron apps
   };
   
